@@ -1,0 +1,2960 @@
+<!doctype html>
+<html lang="ko" class="dark"><head>
+    
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프레이밍 X-레이 &amp; 팩트 탈수기 · Framing X-Ray</title>
+    <meta name="description" content="매체 언어의 감정 선동과 모호한 권위 표기를 해부해 순수 팩트만 추출하고, 동일 팩트의 프레이밍 전환과 사각지대를 분석하는 데이터 저널리즘 워크벤치.">
+    <meta property="og:title" content="프레이밍 X-레이 &amp; 팩트 탈수기 · Framing X-Ray">
+    <meta property="og:description" content="원문 속 감정 트리거와 모호한 출처를 실시간으로 탈수하고, 순수 팩트의 프레임 전환과 생략된 사각지대를 검증합니다.">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&amp;family=Noto+Sans+KR:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700&amp;display=swap" rel="stylesheet">
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg-canvas: #0b1120;
+        --bg-surface: #0f172a;
+        --bg-sub: #0d1425;
+        --bg-inset: #0b1120;
+        --border: rgba(30, 41, 59, 0.95);
+        --border-strong: rgba(51, 65, 85, 0.9);
+        --text-100: #f1f5f9;
+        --text-200: #e2e8f0;
+        --text-300: #cbd5e1;
+        --text-400: #94a3b8;
+        --text-500: #64748b;
+        --sky-200: #bae6fd;
+        --sky-300: #7dd3fc;
+        --sky-400: #38bdf8;
+        --sky-500: #0ea5e9;
+        --rose-100: #ffe4e6;
+        --rose-200: #fecdd3;
+        --rose-300: #fda4af;
+        --rose-400: #fb7185;
+        --rose-500: #f43f5e;
+        --amber-100: #fef3c7;
+        --amber-200: #fde68a;
+        --amber-300: #fcd34d;
+        --amber-400: #fbbf24;
+        --amber-500: #f59e0b;
+        --emerald-200: #a7f3d0;
+        --emerald-300: #6ee7b7;
+        --emerald-400: #34d399;
+        --violet-200: #ddd6fe;
+        --violet-300: #c4b5fd;
+        --violet-400: #a78bfa;
+        --font-sans: "Plus Jakarta Sans", "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
+
+      html, body {
+        margin: 0;
+        padding: 0;
+        background: var(--bg-canvas);
+        color: var(--text-100);
+        font-family: var(--font-sans);
+        -webkit-font-smoothing: antialiased;
+        line-height: 1.5;
+      }
+
+      button, input, textarea {
+        font-family: inherit;
+      }
+
+      button {
+        cursor: pointer;
+        border: none;
+        background: none;
+        color: inherit;
+        padding: 0;
+      }
+
+      button:disabled {
+        cursor: not-allowed;
+        opacity: 0.55;
+      }
+
+      button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible {
+        outline: 2px solid var(--sky-400);
+        outline-offset: 2px;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .font-mono, .tabular-nums {
+        font-variant-numeric: tabular-nums;
+      }
+
+      .font-mono {
+        font-family: var(--font-mono);
+      }
+
+      /* Scrollbar */
+      ::-webkit-scrollbar { width: 6px; height: 6px; }
+      ::-webkit-scrollbar-track { background: transparent; }
+      ::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.22); border-radius: 3px; }
+      ::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.38); }
+
+      /* Layout Shell */
+      .app-shell {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* TopBar (3-zone contract) */
+      .topbar {
+        height: 56px;
+        border-bottom: 1px solid var(--border);
+        background: var(--bg-canvas);
+        padding: 0 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        flex-shrink: 0;
+      }
+
+      .brand-link {
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: var(--text-100);
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      .topbar-nav {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .nav-tab {
+        position: relative;
+        padding: 8px 2px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--text-400);
+        white-space: nowrap;
+        flex-shrink: 0;
+        transition: color 0.15s ease;
+      }
+
+      .nav-tab:hover { color: var(--text-200); }
+      .nav-tab.is-active { color: var(--text-100); }
+      .nav-tab.is-active::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -11px;
+        height: 2px;
+        background: var(--sky-400);
+      }
+
+      .nav-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 2px;
+        display: inline-block;
+      }
+
+      .topbar-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+      }
+
+      /* Buttons */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 7px 12px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 600;
+        white-space: nowrap;
+        flex-shrink: 0;
+        transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+      }
+
+      .btn-secondary {
+        background: #0f172a;
+        border: 1px solid rgba(51, 65, 85, 0.85);
+        color: var(--text-200);
+      }
+      .btn-secondary:hover:not(:disabled) { background: #1e293b; }
+
+      .btn-sky-soft {
+        background: rgba(14, 165, 233, 0.14);
+        border: 1px solid rgba(14, 165, 233, 0.45);
+        color: var(--sky-200);
+      }
+      .btn-sky-soft:hover:not(:disabled) { background: rgba(14, 165, 233, 0.24); }
+
+      .btn-primary {
+        background: var(--sky-500);
+        color: #020617;
+        font-weight: 700;
+      }
+      .btn-primary:hover:not(:disabled) { background: var(--sky-400); }
+
+      /* Main Container */
+      .main-container {
+        width: 100%;
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 20px 24px 36px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      /* Card Containers */
+      .panel {
+        background: var(--bg-surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .panel-pad {
+        padding: 20px;
+      }
+
+      .panel-header {
+        padding: 12px 18px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .panel-title {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--text-100);
+        letter-spacing: -0.01em;
+      }
+
+      .sub-box {
+        background: var(--bg-inset);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+      }
+
+      /* Input Section */
+      .samples-strip {
+        padding: 10px 18px;
+        background: var(--bg-sub);
+        border-bottom: 1px solid rgba(30, 41, 59, 0.8);
+      }
+
+      .samples-grid {
+        margin-top: 8px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .sample-btn {
+        width: 100%;
+        text-align: left;
+        padding: 8px 12px;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+        background: rgba(15, 23, 42, 0.75);
+        color: var(--text-300);
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        transition: background-color 0.15s ease, border-color 0.15s ease;
+      }
+      .sample-btn:hover { background: rgba(30, 41, 59, 0.7); color: var(--text-100); }
+      .sample-btn.is-active {
+        background: rgba(30, 41, 59, 0.95);
+        border-color: rgba(14, 165, 233, 0.65);
+        color: var(--text-100);
+      }
+
+      .input-workspace {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .url-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .text-input {
+        width: 100%;
+        min-width: 0;
+        padding: 10px 12px;
+        border-radius: 6px;
+        background: var(--bg-inset);
+        border: 1px solid var(--border);
+        color: var(--text-100);
+        font-size: 12px;
+      }
+      .text-input::placeholder, .article-textarea::placeholder {
+        color: var(--text-500);
+      }
+
+      .textarea-row {
+        display: flex;
+        gap: 12px;
+        align-items: stretch;
+      }
+
+      .article-textarea {
+        flex: 1;
+        width: 100%;
+        min-height: 200px;
+        max-height: 340px;
+        resize: vertical;
+        padding: 16px;
+        border-radius: 6px;
+        background: var(--bg-inset);
+        border: 1px solid var(--border);
+        color: var(--text-100);
+        font-size: 14px;
+        line-height: 1.65;
+      }
+
+      .analyze-cta {
+        width: 190px;
+        padding: 12px 16px;
+        border-radius: 6px;
+        font-size: 14px;
+      }
+
+      .collapsed-bar {
+        padding: 10px 16px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      /* Grids */
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .grid-battle {
+        display: grid;
+        grid-template-columns: 1.25fr 1fr;
+        gap: 16px;
+      }
+
+      .grid-algo-split {
+        display: grid;
+        grid-template-columns: 1.25fr 1fr;
+        gap: 16px;
+      }
+
+      .grid-4 {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      /* Scoreboard & Donut */
+      .donut-wrap {
+        position: relative;
+        width: 112px;
+        height: 112px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .donut-center {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .grade-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 12px;
+        border-radius: 6px;
+        border: 1px solid;
+        font-size: 13px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      .grade-aggro { background: rgba(244, 63, 94, 0.15); border-color: rgba(244, 63, 94, 0.5); color: var(--rose-200); }
+      .grade-caution { background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.5); color: var(--amber-200); }
+      .grade-factual { background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.5); color: var(--emerald-200); }
+
+      .kw-chip-rose {
+        padding: 5px 12px;
+        border-radius: 999px;
+        background: rgba(244, 63, 94, 0.16);
+        border: 1px solid rgba(244, 63, 94, 0.45);
+        color: var(--rose-100);
+        font-size: 13px;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      .kw-chip-rose:hover { background: rgba(244, 63, 94, 0.26); }
+
+      .kw-chip-amber {
+        padding: 4px 12px;
+        border-radius: 999px;
+        background: rgba(245, 158, 11, 0.15);
+        border: 1px solid rgba(245, 158, 11, 0.42);
+        color: var(--amber-100);
+        font-size: 12px;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      .kw-chip-amber:hover { background: rgba(245, 158, 11, 0.24); }
+
+      /* Top 3 Facts */
+      .fact-card {
+        padding: 16px;
+        border-radius: 8px;
+        background: var(--bg-inset);
+        border: 1px solid rgba(14, 165, 233, 0.35);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .fact-text {
+        margin: 0;
+        font-size: 17px;
+        line-height: 1.6;
+        font-weight: 500;
+        color: var(--text-100);
+        word-break: keep-all;
+      }
+
+      /* X-Ray Text */
+      .xray-body {
+        padding: 20px;
+        font-size: 15px;
+        line-height: 1.9;
+        color: var(--text-300);
+        white-space: pre-wrap;
+        word-break: keep-all;
+      }
+      .seg-btn {
+        display: inline;
+        text-align: left;
+        font-size: inherit;
+        line-height: inherit;
+        transition: opacity 0.15s ease;
+      }
+      .seg-highlight {
+        border-radius: 3px;
+        padding: 1px 4px;
+        margin: 0 1px;
+      }
+      .seg-emotion {
+        background: rgba(244, 63, 94, 0.2);
+        color: var(--rose-100);
+        border-bottom: 1px solid rgba(251, 113, 133, 0.8);
+      }
+      .seg-vague {
+        background: rgba(245, 158, 11, 0.2);
+        color: var(--amber-100);
+        border-bottom: 1px solid rgba(251, 191, 36, 0.8);
+      }
+      .seg-fact {
+        background: rgba(14, 165, 233, 0.22);
+        color: #f0f9ff;
+        border-bottom: 1px solid var(--sky-400);
+      }
+      .seg-dim { opacity: 0.24; }
+      .seg-selected { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.65); }
+      .seg-strike {
+        text-decoration: line-through;
+        opacity: 0.3;
+        color: var(--text-500);
+        margin: 0 1px;
+      }
+      .sentence-focused {
+        border-radius: 4px;
+        padding: 2px 6px;
+        background: rgba(14, 165, 233, 0.14);
+        box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.8);
+      }
+
+      /* Segmented Tabs */
+      .seg-tabs {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 4px;
+        background: var(--bg-inset);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+      }
+      .seg-tab-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--text-400);
+        white-space: nowrap;
+      }
+      .seg-tab-btn:hover { color: var(--text-200); }
+      .seg-tab-btn.is-active {
+        background: #1e293b;
+        color: var(--text-100);
+      }
+
+      /* Sentence Map Tiles */
+      .sent-tile {
+        height: 32px;
+        min-width: 42px;
+        padding: 0 8px;
+        border-radius: 5px;
+        border: 1px solid;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        font-weight: 600;
+        transition: transform 0.12s ease;
+      }
+      .sent-tile:hover { transform: scale(1.06); }
+      .sent-fact { background: rgba(14, 165, 233, 0.24); border-color: rgba(56, 189, 248, 0.7); color: #e0f2fe; }
+      .sent-framing { background: rgba(244, 63, 94, 0.24); border-color: rgba(251, 113, 133, 0.7); color: var(--rose-100); }
+      .sent-mixed { background: rgba(245, 158, 11, 0.24); border-color: rgba(251, 191, 36, 0.7); color: var(--amber-100); }
+      .sent-neutral { background: rgba(30, 41, 59, 0.85); border-color: rgba(51, 65, 85, 0.9); color: var(--text-300); }
+      .sent-tile.is-focused { box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.9); }
+
+      /* Modal */
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 60;
+        background: rgba(0, 0, 0, 0.78);
+        backdrop-filter: blur(3px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+        overflow-y: auto;
+      }
+      .modal-card {
+        width: 100%;
+        max-width: 900px;
+        background: var(--bg-surface);
+        border: 1px solid rgba(51, 65, 85, 0.9);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.65);
+      }
+      .modal-body {
+        padding: 20px;
+        display: grid;
+        grid-template-columns: 1fr 290px;
+        gap: 24px;
+        align-items: start;
+      }
+      .canvas-stage {
+        position: relative;
+        width: 100%;
+        max-width: 360px;
+        aspect-ratio: 4 / 5;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid rgba(51, 65, 85, 0.85);
+        background: var(--bg-inset);
+      }
+      .carousel-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 34px;
+        height: 34px;
+        border-radius: 999px;
+        background: rgba(0, 0, 0, 0.58);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .carousel-arrow:hover:not(:disabled) { background: rgba(0, 0, 0, 0.85); }
+
+      /* Responsive */
+      @media (max-width: 1024px) {
+        .grid-2, .grid-battle, .grid-algo-split, .grid-4 {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .topbar { padding: 0 14px; gap: 12px; }
+        .topbar-nav { display: none; }
+        .main-container { padding: 14px; }
+        .samples-grid { grid-template-columns: 1fr; }
+        .textarea-row { flex-direction: column; }
+        .analyze-cta { width: 100%; }
+        .fact-card { flex-direction: column; align-items: flex-start; }
+        .modal-body { grid-template-columns: 1fr; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  <style>.aistudio-hover-highlight { box-shadow: inset 0 0 0 0.5px white, inset 0 0 0 1.5px rgba(128,128,128,0.6) !important; }.aistudio-active-highlight { outline: 2px solid #87a9ff !important; outline-offset: -2px !important; box-shadow: 0 0 0 0.5px rgba(0,0,0,0.3), inset 0 0 0 0.5px rgba(0,0,0,0.3) !important; }.aistudio-generating-blur { filter: blur(5px) grayscale(100%) brightness(28%) !important; transition: filter 0.3s ease; }#aistudio-focus-mode-tag { position: absolute; display: none; align-items: center; gap: 4px; background: #87a9ff; border-radius: 12px; z-index: 10000; padding: 8px; color: #32302c; font-family: Inter, sans-serif; font-size: 14px; font-style: normal; font-weight: 500; line-height: 21px; pointer-events: none; }#aistudio-hover-mode-tag { position: absolute; display: none; align-items: center; gap: 4px; background: rgba(128,128,128,0.6); border-radius: 12px; z-index: 10000; padding: 8px; color: white; font-family: Inter, sans-serif; font-size: 14px; font-style: normal; font-weight: 500; line-height: 21px; pointer-events: none; }.aistudio-img-icon { display: none; vertical-align: middle; pointer-events: auto; cursor: pointer; }.aistudio-img-icon.visible { display: inline-flex; }#aistudio-focus-mode-tag .aistudio-img-icon { position: relative; width: 26px; height: 26px; background: #32302c; border-radius: 6px; margin: -4px -4px -4px 0; }#aistudio-focus-mode-tag .aistudio-img-icon::before { content: ""; position: absolute; top: 4px; left: 4px; width: 18px; height: 18px; background-color: white; -webkit-mask-image: url("https://fonts.gstatic.com/s/i/short-term/release/googlesymbols/edit_fix_auto/default/24px.svg"); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; mask-image: url("https://fonts.gstatic.com/s/i/short-term/release/googlesymbols/edit_fix_auto/default/24px.svg"); mask-size: contain; mask-repeat: no-repeat; }#aistudio-hover-mode-tag .aistudio-img-icon { position: relative; width: 18px; height: 18px; margin-left: 4px; }#aistudio-hover-mode-tag .aistudio-img-icon::before { content: ""; position: absolute; top: 0; left: 0; width: 18px; height: 18px; background-color: white; -webkit-mask-image: url("https://fonts.gstatic.com/s/i/short-term/release/googlesymbols/edit_fix_auto/default/24px.svg"); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; mask-image: url("https://fonts.gstatic.com/s/i/short-term/release/googlesymbols/edit_fix_auto/default/24px.svg"); mask-size: contain; mask-repeat: no-repeat; }#aistudio-focus-mode-tag .aistudio-img-icon:hover, #aistudio-hover-mode-tag .aistudio-img-icon:hover { background: #424242 !important; }#aistudio-focus-mode-tag .aistudio-img-icon:active, #aistudio-hover-mode-tag .aistudio-img-icon:active { background: #393f51 !important; }</style></head>
+  <body>
+    <div id="app" class="app-shell"></div>
+
+    <script id="framing-xray-script">
+      (function () {
+        'use strict';
+
+        // Capture a clean standalone HTML snapshot before rendering runtime DOM
+        var CLEAN_STANDALONE_HTML = '';
+        (function captureCleanSnapshot() {
+          try {
+            var clone = document.documentElement.cloneNode(true);
+            var scripts = clone.querySelectorAll('script');
+            for (var i = 0; i < scripts.length; i++) {
+              if (scripts[i].id !== 'framing-xray-script' && scripts[i].parentNode) {
+                scripts[i].parentNode.removeChild(scripts[i]);
+              }
+            }
+            var devNodes = clone.querySelectorAll(
+              'link[href*="/@vite"], link[rel="modulepreload"], style[data-vite-dev-id]'
+            );
+            for (var j = 0; j < devNodes.length; j++) {
+              if (devNodes[j].parentNode) devNodes[j].parentNode.removeChild(devNodes[j]);
+            }
+            var appEl = clone.querySelector('#app');
+            if (appEl) appEl.innerHTML = '';
+            CLEAN_STANDALONE_HTML = '<!doctype html>\n' + clone.outerHTML;
+          } catch (e) {
+            CLEAN_STANDALONE_HTML = '';
+          }
+        })();
+
+        /* ---------------- Icons (Inline SVG, Zero External Deps) ---------------- */
+        function svgIcon(pathD, extraClass) {
+          return (
+            '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="' +
+            (extraClass || '') +
+            '">' +
+            pathD +
+            '</svg>'
+          );
+        }
+
+        var ICONS = {
+          reset: svgIcon('<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>'),
+          download: svgIcon('<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/>'),
+          link: svgIcon('<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>'),
+          file: svgIcon('<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/>'),
+          eraser: svgIcon('<path d="m7 21-4.3-4.3c-1-1-1-2.5 0-3.4l9.6-9.6c1-1 2.5-1 3.4 0l5.6 5.6c1 1 1 2.5 0 3.4L13 21"/><path d="M22 21H7"/><path d="m5 11 9 9"/>'),
+          scan: svgIcon('<path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="12" r="3"/><path d="m16 16-1.9-1.9"/>'),
+          edit: svgIcon('<path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/>'),
+          copy: svgIcon('<rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>'),
+          check: svgIcon('<path d="M20 6 9 17l-5-5"/>'),
+          images: svgIcon('<path d="M18 22H4a2 2 0 0 1-2-2V6"/><path d="m22 13-1.296-1.296a2.41 2.41 0 0 0-3.408 0L11 18"/><circle cx="12" cy="8" r="2"/><rect width="16" height="16" x="6" y="2" rx="2"/>'),
+          tag: svgIcon('<path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/>'),
+          search: svgIcon('<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>'),
+          droplets: svgIcon('<path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z"/><path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97"/>'),
+          chevronDown: svgIcon('<path d="m6 9 6 6 6-6"/>'),
+          chevronUp: svgIcon('<path d="m18 15-6-6-6 6"/>'),
+          chevronLeft: svgIcon('<path d="m15 18-6-6 6-6"/>'),
+          chevronRight: svgIcon('<path d="m9 18 6-6-6-6"/>'),
+          barChart: svgIcon('<path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/>'),
+          scale: svgIcon('<path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/>'),
+          layers: svgIcon('<path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/>'),
+          arrowRight: svgIcon('<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>'),
+          arrowUpRight: svgIcon('<path d="M7 7h10v10"/><path d="M7 17 17 7"/>'),
+          x: svgIcon('<path d="M18 6 6 18"/><path d="m6 6 12 12"/>'),
+          palette: svgIcon('<circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/>'),
+        };
+
+        /* ---------------- Helpers ---------------- */
+        function escapeHtml(str) {
+          return String(str == null ? '' : str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+        }
+
+        function sanitizePublicHttpUrl(rawUrl) {
+          try {
+            var parsed = new URL(String(rawUrl || '').trim());
+            if (parsed.protocol === 'http:' || parsed.protocol === 'https:') {
+              return parsed.toString();
+            }
+            return null;
+          } catch (e) {
+            return null;
+          }
+        }
+
+        function isLikelyStandaloneUrl(text) {
+          var trimmed = String(text || '').trim();
+          if (!trimmed || /\s/.test(trimmed)) return null;
+          if (!/^https?:\/\//i.test(trimmed)) return null;
+          return sanitizePublicHttpUrl(trimmed);
+        }
+
+        /* ---------------- Sample Cases ---------------- */
+        var SAMPLE_CASES = [
+          {
+            id: 'economy',
+            shortLabel: '경제·통계 착시',
+            mediaFormat: '온라인 속보 기사',
+            title: '“장바구니 물가 대폭발… 서민 등골 휜다”',
+            text:
+              '[속보] 장바구니 물가 대폭발… “월급 빼고 다 올랐다, 서민 등골 휜다”\n\n' +
+              '유통업계와 시장 관계자들에 따르면 최근 치솟는 밥상 물가로 소비자들의 비명이 전국 곳곳에서 터져 나오고 있다. ' +
+              '통계청이 2일 발표한 10월 소비자물가 동향에 따르면 전체 소비자물가지수는 전년 동월 대비 2.3% 상승했다. ' +
+              '그러나 일선 마트 상인들은 체감 물가가 통계의 몇 배는 된다며 입을 모은다. ' +
+              '실제로 신선채소 중 배추 가격은 전년 대비 42.8%, 무는 36.1% 올랐다. ' +
+              '이대로 가다간 서민 가계가 줄도산할 것이라는 암울한 전망까지 쏟아지고 있다. ' +
+              '반면 같은 기간 석유류 지수는 8.4% 하락했고, 변동성이 큰 농산물과 석유류를 제외한 근원물가 상승률은 1.8%를 기록했다. ' +
+              '그럼에도 경제 전문가 다수는 정부의 물가 대책이 사실상 무력화됐다며 날 선 비판을 가했다.',
+          },
+          {
+            id: 'tech',
+            shortLabel: '과학·기술 공포',
+            mediaFormat: '테크 유튜브 대본 / 기사',
+            title: '“내년 일자리 80% 사라진다 충격 보고서”',
+            text:
+              '“내년 일자리 80%가 사라진다” 충격 보고서… 화이트칼라 대재앙 카운트다운!!\n\n' +
+              '생성형 인공지능(AI)이 인간의 일자리를 무자비하게 집어삼키고 있다. ' +
+              '실리콘밸리 내부 정통한 소식통들은 내년이면 기존 사무직의 상당수가 흔적도 없이 증발할 것이라며 경고음을 울렸다. ' +
+              '글로벌 컨설팅사 옥스퍼드 애널리틱스가 지난달 공개한 보고서에 따르면 조사 대상 직무의 80%에서 전체 업무 시간 중 최소 10% 이상이 AI 도구 활용 가능 영역에 포함됐다. ' +
+              '하지만 현장 직장인들 사이에서는 당장 내일 해고 통지서를 받아도 이상하지 않다는 극도의 공포감이 확산하고 있다. ' +
+              '해당 보고서는 AI 도입으로 직무 자체가 완전히 대체될 비율은 향후 5년간 6.2% 수준으로 추산했으며, 신규 직무 창출 효과는 별도 변수로 분리해 산정하지 않았다. ' +
+              '그럼에도 업계에서는 사실상 인류 노동 시장의 종말이 시작됐다는 비관론이 지배적이다.',
+          },
+          {
+            id: 'society',
+            shortLabel: '사회·여론몰이',
+            mediaFormat: '커뮤니티 이슈 글',
+            title: '“요즘 애들 문해력 역대급 심각… 전문가도 경악”',
+            text:
+              '요즘 애들 문해력 진짜 역대급 심각… 교육 현장 전문가들도 경악했다?!\n\n' +
+              '최근 온라인 커뮤니티를 중심으로 “요즘 20대들은 ‘심심한 사과’를 지루한 사과로 안다더라”, “사흘을 4일로 착각해 연차를 잘못 썼다”는 믿기 힘든 실화들이 연일 화제다. ' +
+              '학부모들과 일선 교사들 사이에서는 유튜브 쇼츠만 보더니 애들 뇌가 썩고 있다는 개탄이 쏟아진다. ' +
+              '교육부와 한국교육과정평가원이 발표한 2023년 국가수준 학업성취도 평가 결과, 고등학교 2학년 국어 과목의 보통학력 이상 비율은 52.1%로 전년(55.4%) 대비 3.3%포인트 하락했다. ' +
+              '반면 같은 평가에서 기초학력 미달 비율은 8.6%로 직전 해(8.0%)와 통계적으로 큰 차이를 보이지 않았고, OECD 국제성인역량조사(PIAAC) 기준 한국의 16~24세 청년층 언어능력 점수는 OECD 평균(273점)을 상회하는 282점을 기록했다. ' +
+              '하지만 대다수 네티즌들은 이 나라 미래가 암담하다며 혀를 차고 있다.',
+          },
+        ];
+
+        function findMatchingSample(rawText) {
+          var normalized = String(rawText || '').trim();
+          for (var i = 0; i < SAMPLE_CASES.length; i++) {
+            if (SAMPLE_CASES[i].text.trim() === normalized) return SAMPLE_CASES[i];
+          }
+          return null;
+        }
+
+        /* ---------------- HTML Article Extractor ---------------- */
+        var NON_BODY_SELECTOR =
+          'script, style, noscript, iframe, header, footer, nav, aside, form, button, input, figure, figcaption, svg, select, textarea';
+        var NOISE_CLASS_ID_REGEX =
+          /(?:comment|reply|banner|related|recommend|ranking|popular|sidebar|widget|share|sns|promotion|copyright|reporter|byline|breadcrumb|\bad(?:s|vert|vertisement|box|wrap|unit|slot|sense|area|container)?\b|[_-]ad(?:s)?(?:[_-]|$)|(?:^|[_-])ad(?:s)?[_-])/i;
+        var PRIORITY_SELECTORS = [
+          '#dic_area', '#newsct_article', '.article_view', '#harmonyContainer',
+          '[itemprop="articleBody"]', 'article', '#articleBody', '.article_body',
+          '.article-body', '#article-view-content-div', '.news_body', '.view_con',
+        ];
+        var TRUNCATE_KEYWORDS = [
+          '무단 전재', '무단전재', '재배포 금지', '저작권자', 'copyright', 'ⓒ',
+          '제보는', '▶', '☞', '관련기사', '많이 본 뉴스', '이 시각 주요뉴스', '구독하기',
+        ];
+
+        function postProcessArticleText(rawText) {
+          var rawLines = String(rawText || '').replace(/\r\n?/g, '\n').split('\n');
+          var kept = [];
+          for (var i = 0; i < rawLines.length; i++) {
+            var line = rawLines[i].replace(/[ \t\f\v]+/g, ' ').trim();
+            if (!line) continue;
+            var lower = line.toLowerCase();
+            var stop = false;
+            for (var k = 0; k < TRUNCATE_KEYWORDS.length; k++) {
+              if (lower.indexOf(TRUNCATE_KEYWORDS[k].toLowerCase()) !== -1) {
+                stop = true;
+                break;
+              }
+            }
+            if (stop) break;
+            var hasEnding = /[.!?]|[다요음함임](?:\s*["'”’)\]]*)$/.test(line);
+            if (line.length < 15 && !hasEnding) continue;
+            kept.push(line);
+          }
+          return kept.join('\n\n').trim();
+        }
+
+        function extractTextWithBreaks(root) {
+          var BLOCK_TAGS = { P:1, DIV:1, LI:1, H1:1, H2:1, H3:1, H4:1, H5:1, H6:1, BLOCKQUOTE:1, SECTION:1, ARTICLE:1, TR:1 };
+          var chunks = [];
+          function walk(node) {
+            if (node.nodeType === 3) {
+              if (node.textContent) chunks.push(node.textContent);
+              return;
+            }
+            if (node.nodeType !== 1) return;
+            var tag = node.tagName.toUpperCase();
+            if (tag === 'BR') { chunks.push('\n'); return; }
+            var isBlock = !!BLOCK_TAGS[tag];
+            if (isBlock) chunks.push('\n');
+            for (var i = 0; i < node.childNodes.length; i++) walk(node.childNodes[i]);
+            if (isBlock) chunks.push('\n');
+          }
+          walk(root);
+          return chunks.join('');
+        }
+
+        function extractArticleFromHtml(html) {
+          var parser = new DOMParser();
+          var doc = parser.parseFromString(html, 'text/html');
+          var ogTitle = doc.querySelector('meta[property="og:title"]');
+          var twTitle = doc.querySelector('meta[name="twitter:title"]');
+          var h1El = doc.querySelector('h1');
+          var titleEl = doc.querySelector('title');
+          var title =
+            (ogTitle && ogTitle.getAttribute('content') && ogTitle.getAttribute('content').trim().length > 3 && ogTitle.getAttribute('content').trim()) ||
+            (twTitle && twTitle.getAttribute('content') && twTitle.getAttribute('content').trim().length > 3 && twTitle.getAttribute('content').trim()) ||
+            (h1El && h1El.textContent && h1El.textContent.replace(/\s+/g, ' ').trim()) ||
+            (titleEl && titleEl.textContent && titleEl.textContent.replace(/\s+/g, ' ').trim()) ||
+            '제목 없는 웹 기사';
+
+          doc.querySelectorAll(NON_BODY_SELECTOR).forEach(function (el) { el.remove(); });
+          var allEls = Array.prototype.slice.call(doc.querySelectorAll('*'));
+          for (var i = 0; i < allEls.length; i++) {
+            var el = allEls[i];
+            if (!el.isConnected) continue;
+            var tag = el.tagName.toUpperCase();
+            if (tag === 'HTML' || tag === 'BODY') continue;
+            var idVal = el.getAttribute('id') || '';
+            var classVal = el.getAttribute('class') || '';
+            if (NOISE_CLASS_ID_REGEX.test(idVal) || NOISE_CLASS_ID_REGEX.test(classVal)) {
+              el.remove();
+            }
+          }
+
+          var target = null;
+          for (var s = 0; s < PRIORITY_SELECTORS.length; s++) {
+            var matched = doc.querySelector(PRIORITY_SELECTORS[s]);
+            if (!matched) continue;
+            if (postProcessArticleText(extractTextWithBreaks(matched)).length >= 60) {
+              target = matched;
+              break;
+            }
+          }
+
+          if (!target) {
+            var root = doc.body || doc.documentElement;
+            if (root) {
+              var candidates = Array.prototype.slice.call(root.querySelectorAll('div, section'));
+              var bestScore = 0;
+              for (var c = 0; c < candidates.length; c++) {
+                var cand = candidates[c];
+                var ps = Array.prototype.slice.call(cand.querySelectorAll('p'));
+                if (!ps.length) continue;
+                var pLen = 0;
+                for (var p = 0; p < ps.length; p++) {
+                  var pt = (ps[p].textContent || '').replace(/\s+/g, ' ').trim();
+                  if (pt.length >= 15) pLen += pt.length;
+                }
+                if (pLen < 80) continue;
+                var totLen = (cand.textContent || '').replace(/\s+/g, ' ').trim().length || 1;
+                var linkLen = 0;
+                cand.querySelectorAll('a').forEach(function (a) { linkLen += (a.textContent || '').trim().length; });
+                if (linkLen / totLen > 0.45) continue;
+                var score = ps.length * 60 + pLen * (pLen / totLen) - totLen * 0.08;
+                if (score > bestScore) { bestScore = score; target = cand; }
+              }
+            }
+          }
+
+          var rawExtracted = target
+            ? extractTextWithBreaks(target)
+            : doc.body
+              ? extractTextWithBreaks(doc.body)
+              : '';
+
+          return {
+            title: title,
+            content: postProcessArticleText(rawExtracted).slice(0, 15000),
+          };
+        }
+
+        function extractNewsFromUrl(rawUrl) {
+          var validUrl = sanitizePublicHttpUrl(rawUrl);
+          if (!validUrl) {
+            return Promise.reject(new Error('올바른 http:// 또는 https:// 뉴스 기사 링크를 입력해 주세요.'));
+          }
+
+          var tryServer =
+            window.location.protocol === 'http:' || window.location.protocol === 'https:'
+              ? fetch('/api/fetch-news', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ url: validUrl }),
+                })
+                  .then(function (res) {
+                    if (!res.ok) return null;
+                    return res.json().then(function (data) {
+                      var parsed = data.html ? extractArticleFromHtml(data.html) : null;
+                      var content = ((parsed && parsed.content.length >= 60 ? parsed.content : data.content) || '').trim();
+                      if (content.length < 60) return null;
+                      var title = (
+                        (parsed && parsed.title && parsed.title !== '제목 없는 웹 기사' ? parsed.title : data.title) ||
+                        '제목 없는 웹 기사'
+                      ).trim();
+                      return {
+                        title: title,
+                        content: content,
+                        url: sanitizePublicHttpUrl(data.url || validUrl) || validUrl,
+                      };
+                    });
+                  })
+                  .catch(function () { return null; })
+              : Promise.resolve(null);
+
+          return tryServer.then(function (serverRes) {
+            if (serverRes) return serverRes;
+            var proxyUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(validUrl);
+            return fetch(proxyUrl)
+              .then(function (res) {
+                if (!res.ok) return null;
+                return res.json();
+              })
+              .then(function (payload) {
+                var html = payload && payload.contents ? payload.contents : '';
+                if (!html || html.length < 200) return null;
+                var extracted = extractArticleFromHtml(html);
+                if (!extracted.content || extracted.content.length < 60) return null;
+                return {
+                  title: extracted.title,
+                  content: extracted.content,
+                  url: sanitizePublicHttpUrl((payload.status && payload.status.url) || validUrl) || validUrl,
+                };
+              })
+              .then(function (proxyRes) {
+                if (proxyRes) return proxyRes;
+                throw new Error('보안 정책으로 자동 추출이 제한된 기사입니다. 아래 입력창에 본문을 직접 복사해 붙여넣어 주세요.');
+              });
+          });
+        }
+
+        /* ---------------- Korean Framing Analysis Engine ---------------- */
+        var EMOTION_LEXICON = [
+          { pattern: '\\[속보\\]|\\[단독\\]|\\[충격\\]|\\[긴급\\]', label: '클릭 유도 속보성 말머리', weight: 3.0 },
+          { pattern: '서민\\s*등골\\s*휜다|등골이\\s*휜다|등골\\s*휘는', label: '집단적 고통과 분노를 자극하는 관용구', weight: 3.0 },
+          { pattern: '대폭발|대재앙|아수라장|초토화|쑥대밭|피눈물|줄초상|줄도산', label: '재난급 위기감을 주입하는 극단적 은유', weight: 3.0 },
+          { pattern: '무자비하게|집어삼키고|증발|종말|뇌가\\s*썩고|민낯|참사|파국|대혼란|대란|최악', label: '대상을 악마화하거나 극단화하는 선동 어휘', weight: 3.0 },
+          { pattern: '역대급|사상\\s*초유|역대\\s*최악|전례\\s*없는', label: '비교 근거 없이 크기를 과장하는 수식어', weight: 2.0 },
+          { pattern: '터졌다|터져\\s*나오고\\s*있다|터져\\s*나왔다|뒤집혔다|발칵', label: '사건의 파장을 극적으로 부풀리는 동사', weight: 2.0 },
+          { pattern: '충격적|충격|경악할|경악|아연실색|경천동지|믿기\\s*힘든', label: '독자의 정서적 동요를 즉각 유도하는 감정 어휘', weight: 2.0 },
+          { pattern: '폭등|폭락|추락|급락|치솟는|치솟았다|붕괴|무너졌다|무너졌', label: '변동폭을 과장해 공포감을 유발하는 서술어', weight: 2.0 },
+          { pattern: '분노|분통|원성|질타|뭇매|개탄|혀를\\s*차|비명|눈물|허탈|배신감', label: '대중의 감정적 반응을 일반화하는 어휘', weight: 2.0 },
+          { pattern: '공포감|공포|패닉|멘붕|쇼크|악몽|비관론|암울한|암담하다|암담', label: '불안과 파국적 심리를 증폭시키는 표현', weight: 2.0 },
+          { pattern: '결국|이대로\\s*가다간|카운트다운|시한폭탄|벼랑\\s*끝|초비상|적신호|경고음|경고|직격탄', label: '필연적 위기와 긴박함을 암시하는 프레임 어휘', weight: 1.4 },
+          { pattern: '심각한|심각|위기감|휘청|들끓|들썩|술렁|도마\\s*위|휩싸여|휩싸였다|날\\s*선\\s*비판|무력화', label: '논란성과 부정적 긴장감을 강조하는 표현', weight: 1.2 },
+        ];
+
+        var EMOTION_PUNCTUATION_REGEX = /[!?]{2,}|[?!]{2,}|\.{3,}|…+/g;
+        var EMOTION_PUNCTUATION_WEIGHT = 2.0;
+
+        var VAGUE_PATTERNS = [
+          {
+            regex:
+              /(?<![가-힣a-zA-Z0-9])(?:복수의\s*)?(?:(?:유통업계|교육\s*현장|실리콘밸리\s*내부|업계|시장|정계|재계|현장|일선|학계|외신|커뮤니티|온라인)\s+)?(?:정통한\s*)?(?:전문가|관계자|소식통|당국자|상인|교사|학부모|직장인|소비자|네티즌|누리꾼|시민|이들|일각)(?:들)?(?:은|는|이|가|의|도|만)?(?:\s*(?:사이에서|사이에선|에\s*따르면|측은|다수는|중심으로))?(?![가-힣a-zA-Z0-9])/g,
+            reason: '모호한 출처 · 구체적 기관·실명 없이 익명 또는 집단 주어에 의존',
+            weight: 1.5,
+          },
+          {
+            regex:
+              /(?:온라인\s*커뮤니티를\s*중심으로|커뮤니티를\s*중심으로|온라인상에서는|온라인상에선|업계에서는|업계에선|일각에서는|일각에선|현장에서는|현장에선|대다수\s*(?:전문가|네티즌|누리꾼|시민)(?:들은|은)?)/g,
+            reason: '모호한 출처 · 대표성이 검증되지 않은 집단 여론 일반화',
+            weight: 2.0,
+          },
+          {
+            regex:
+              /(?:(?:으)?로\s*알려졌다|라는\s*지적이다|라는\s*지적이\s*나온다|라는\s*평가다|라는\s*분석이다|라는\s*전망이다|라는\s*비판이다|것으로\s*보인다|것으로\s*전해졌다|것으로\s*알려졌다|것으로\s*추정된다|입을\s*모은다|입을\s*모았다|중론이다|지배적이다|풀이된다|관측된다|전해졌다|알려졌다)/g,
+            reason: '책임 회피 서술 · 주체와 근거를 흐리는 피동·추측형 어미',
+            weight: 1.2,
+          },
+        ];
+
+        var NUMBER_UNIT_REGEX =
+          /\d+(?:,\d{3})*(?:\.\d+)?\s*(?:%|퍼센트|%p|포인트|명|원|억|만|조|천|배|건|회|년|월|일|시간|분|초|점|위|세|대|호|달러|엔|유로|kg|km|m)/g;
+        var OFFICIAL_AGENCY_REGEX =
+          /(?:통계청|한국은행|기획재정부|교육부|보건복지부|고용노동부|과학기술정보통신부|국토교통부|산업통상자원부|금융위원회|공정거래위원회|경찰청|검찰|법원|국회|한국교육과정평가원|질병관리청|기상청|감사원|OECD|IMF|UN|WHO|연준|Fed|발표|보고서|통계|조사\s*결과|집계|백서|공시|지표|지수|추산)/g;
+        var DIRECT_QUOTE_REGEX = /(?:"[^"\n]{4,}"|“[^”\n]{4,}”|'[^'\n]{4,}'|‘[^’\n]{4,}’)/g;
+
+        var BOILERPLATE_NOISE_REGEX =
+          /(?:(?:기사\s*)?(?:입력|수정|승인|발행|작성|등록|업데이트|출고)\s*[:.]?\s*\d{2,4}|[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}|https?:\/\/|www\.|무단\s*전재|재배포\s*금지|저작권자|copyright|ⓒ|구독\s*하기|구독과\s*좋아요|알림\s*설정|공유하기|스크랩|기사\s*제보|독자\s*제보|광고\s*문의|사업자\s*등록번호|(?:사진|영상|그래픽|자료|일러스트|화면\s*캡처)\s*[=:]|(?:조회수?|댓글|답글|공감|추천|비추천|좋아요|구독자?|팔로워)\s*[:.]?\s*\d|(?:할인\s*쿠폰|특가\s*세일|무료\s*배송|사은품|선착순\s*\d+|프로모션|지금\s*구매|이벤트\s*응모|회원\s*가입)|0\d{1,2}-\d{3,4}-\d{4}|(?:15|16|18)\d{2}-\d{4})/i;
+        var DATE_ONLY_LINE_REGEX =
+          /^\s*(?:\[[^\]]+\]\s*)?\d{4}[.\-/년]\s*\d{1,2}[.\-/월]\s*\d{1,2}(?:일)?(?:\s*\([월화수목금토일]\))?(?:\s*(?:오전|오후)?\s*\d{1,2}:\d{2}(?::\d{2})?)?\s*$/;
+        var NON_NEWS_CHATTER_REGEX =
+          /(?:안녕하세요|반갑습니다|브이로그|먹방|오늘\s*일기|꿀팁|내돈내산|리뷰\s*이벤트|(?:친구|엄마|아빠|남친|여친|남편|아내)(?:들)?(?:이랑|하고|랑|와)\s*.*(?:먹었|갔었|샀다|놀았|마셨|봤다))/;
+        var INCOMPLETE_FRAGMENT_REGEX =
+          /(?:은|는|이|가|을|를|의|에|에서|에게|와|과|로|으로|라는|이라는|다는|라고|다고|라며|면서|으며|지만|는데|은데|거나|든지|더라|다더라)["'”’\s]*$/;
+        var NEWS_ENTITY_OR_DOMAIN_REGEX =
+          /(?:통계청|한국은행|기획재정부|기재부|교육부|보건복지부|복지부|고용노동부|고용부|과학기술정보통신부|과기부|국토교통부|국토부|산업통상자원부|산업부|외교부|국방부|법무부|행안부|환경부|금융위원회|금융위|금융감독원|금감원|공정거래위원회|공정위|방통위|선관위|국세청|관세청|경찰청|경찰|검찰|공수처|법원|재판부|헌법재판소|국회|정부|대통령실|국무회의|여당|야당|지자체|서울시|경기도|시청|구청|도청|교육청|한국교육과정평가원|질병관리청|기상청|감사원|연구원|연구소|학회|협회|공사|공단|거래소|OECD|IMF|UN|WHO|EU|연준|Fed|발표|보고서|통계|조사|집계|백서|공시|지표|지수|추산|산정|평가|보도|취재|확인|전년|동월|동기|대비|기준금리|물가|소비자물가|근원물가|수출|수입|무역|환율|코스피|코스닥|주가|실적|매출|영업이익|GDP|성장률|실업률|고용률|출산율|인구|예산|세수|세금|금리|대출|부동산|아파트|전세|청약|분양|법안|개정안|시행령|조례|판결|선고|기소|수사|혐의|체포|구속|사고|화재|지진|태풍|폭우|폭설|감염|확진|백신|임상|특허|반도체|인공지능|AI|직무|노동|임금|최저임금|연금|건강보험|학업성취도|문해력|언어능력|기후|탄소|원전|전력|에너지|외교|안보|정상회담|관세|제재)/;
+        var NEWS_REPORTING_VERB_REGEX =
+          /(?:발표|공개|조사|집계|기록|상승|하락|증가|감소|확대|축소|추산|산정|밝혔|전했|보도|공시|체결|승인|확정|시행|개정|판결|선고|기소|입건|착수|중단|예고|지적|분석|평가|나타났|드러났|달했|넘었|줄었|늘었|올랐|내렸|동결|인상|인하|포함)(?:했|됐|했으|됐으|했습|됐습|한다|된다|했다|됐다|다)?/;
+
+        function inspectFactSignals(slice) {
+          var signals = [];
+          var nums = slice.match(NUMBER_UNIT_REGEX);
+          if (nums && nums.length) signals.push('수치·단위(' + nums.slice(0, 2).join(', ') + ')');
+          var agencies = slice.match(OFFICIAL_AGENCY_REGEX);
+          if (agencies && agencies.length) signals.push('공식 출처·지표(' + agencies.slice(0, 2).join(', ') + ')');
+          var quotes = slice.match(DIRECT_QUOTE_REGEX);
+          if (quotes && quotes.length && signals.length) signals.push('직접 인용 포함');
+          return signals;
+        }
+
+        function isNewsRelatedFact(text) {
+          var trimmed = String(text || '').trim();
+          if (trimmed.length < 12) return false;
+          if (DATE_ONLY_LINE_REGEX.test(trimmed)) return false;
+          if (BOILERPLATE_NOISE_REGEX.test(trimmed)) return false;
+          if (NON_NEWS_CHATTER_REGEX.test(trimmed)) return false;
+          if (/^["'“‘][^"'”’\n]+["'”’]$/.test(trimmed)) return false;
+          if (INCOMPLETE_FRAGMENT_REGEX.test(trimmed)) return false;
+          var hasNewsDomain = NEWS_ENTITY_OR_DOMAIN_REGEX.test(trimmed);
+          var hasVerb = NEWS_REPORTING_VERB_REGEX.test(trimmed);
+          var hasSignals = inspectFactSignals(trimmed).length > 0;
+          return hasSignals && (hasNewsDomain || hasVerb);
+        }
+
+        function isWordChar(ch) {
+          return !!ch && /[가-힣a-zA-Z0-9]/.test(ch);
+        }
+
+        function expandToKoreanWord(text, start, end) {
+          var s = start;
+          var e = end;
+          while (s > 0 && isWordChar(text[s - 1])) s -= 1;
+          while (e < text.length && isWordChar(text[e])) e += 1;
+          return [s, e];
+        }
+
+        function addNonOverlappingSpan(spans, candidate) {
+          if (candidate.end <= candidate.start) return;
+          for (var i = 0; i < spans.length; i++) {
+            if (candidate.start < spans[i].end && candidate.end > spans[i].start) return;
+          }
+          spans.push(candidate);
+        }
+
+        function detectEmotionAndVagueSpans(rawText) {
+          var spans = [];
+          for (var r = 0; r < VAGUE_PATTERNS.length; r++) {
+            var rule = VAGUE_PATTERNS[r];
+            var rx = new RegExp(rule.regex.source, rule.regex.flags);
+            var m;
+            while ((m = rx.exec(rawText)) !== null) {
+              var mt = m[0];
+              if (!mt.trim() || mt.trim().length < 2) continue;
+              var lead = mt.length - mt.trimStart().length;
+              var trail = mt.length - mt.trimEnd().length;
+              addNonOverlappingSpan(spans, {
+                start: m.index + lead,
+                end: m.index + mt.length - trail,
+                type: 'vague',
+                reason: rule.reason,
+                weight: rule.weight,
+              });
+            }
+          }
+
+          for (var e = 0; e < EMOTION_LEXICON.length; e++) {
+            var entry = EMOTION_LEXICON[e];
+            var erx = new RegExp(entry.pattern, 'gi');
+            var em;
+            while ((em = erx.exec(rawText)) !== null) {
+              var bounds = expandToKoreanWord(rawText, em.index, em.index + em[0].length);
+              addNonOverlappingSpan(spans, {
+                start: bounds[0],
+                end: bounds[1],
+                type: 'emotion',
+                reason: '감정 트리거 · ' + entry.label,
+                weight: entry.weight,
+              });
+            }
+          }
+
+          var prx = new RegExp(EMOTION_PUNCTUATION_REGEX.source, EMOTION_PUNCTUATION_REGEX.flags);
+          var pm;
+          while ((pm = prx.exec(rawText)) !== null) {
+            addNonOverlappingSpan(spans, {
+              start: pm.index,
+              end: pm.index + pm[0].length,
+              type: 'emotion',
+              reason: '감정 트리거 · 긴박감·의혹을 과장하는 반복 문장부호',
+              weight: EMOTION_PUNCTUATION_WEIGHT,
+            });
+          }
+
+          return spans.sort(function (a, b) { return a.start - b.start; });
+        }
+
+        function getSentenceBounds(rawText) {
+          var bounds = [];
+          var currentStart = 0;
+          for (var i = 0; i < rawText.length; i++) {
+            var ch = rawText[i];
+            var nextCh = rawText[i + 1];
+            var isBreak = ch === '\n';
+            var isEnd =
+              (ch === '.' || ch === '!' || ch === '?') &&
+              !(ch === '.' && /\d/.test(rawText[i - 1] || '') && /\d/.test(nextCh || '')) &&
+              !(ch === '.' && (rawText[i - 1] === '.' || nextCh === '.'));
+            if (isBreak || isEnd) {
+              var end = i + 1;
+              if (end > currentStart) bounds.push({ start: currentStart, end: end });
+              currentStart = end;
+            }
+          }
+          if (currentStart < rawText.length) bounds.push({ start: currentStart, end: rawText.length });
+          return bounds;
+        }
+
+        function findUnmarkedGaps(start, end, occupied) {
+          var gaps = [];
+          var cursor = start;
+          for (var i = 0; i < occupied.length; i++) {
+            var span = occupied[i];
+            if (span.end <= start || span.start >= end) continue;
+            if (span.start > cursor) gaps.push({ start: cursor, end: Math.min(span.start, end) });
+            cursor = Math.max(cursor, span.end);
+          }
+          if (cursor < end) gaps.push({ start: cursor, end: end });
+          return gaps;
+        }
+
+        function detectFactSpans(rawText, existingSpans) {
+          var factSpans = [];
+          var sBounds = getSentenceBounds(rawText);
+          for (var i = 0; i < sBounds.length; i++) {
+            var gaps = findUnmarkedGaps(sBounds[i].start, sBounds[i].end, existingSpans);
+            for (var g = 0; g < gaps.length; g++) {
+              var slice = rawText.slice(gaps[g].start, gaps[g].end);
+              var lead = slice.length - slice.trimStart().length;
+              var trail = slice.length - slice.trimEnd().length;
+              var tStart = gaps[g].start + lead;
+              var tEnd = gaps[g].end - trail;
+              var trimmed = rawText.slice(tStart, tEnd);
+              if (trimmed.length < 12) continue;
+              if (!isNewsRelatedFact(trimmed)) continue;
+              var signals = inspectFactSignals(trimmed);
+              if (signals.length > 0) {
+                factSpans.push({
+                  start: tStart,
+                  end: tEnd,
+                  type: 'fact',
+                  reason: '검증 가능 뉴스 팩트 · ' + signals.join(' + '),
+                });
+              }
+            }
+          }
+          return factSpans;
+        }
+
+        function buildSegmentsFromSpans(rawText, allSpans) {
+          var sorted = allSpans.slice().sort(function (a, b) { return a.start - b.start; });
+          var segments = [];
+          var cursor = 0;
+          var idx = 0;
+          for (var i = 0; i < sorted.length; i++) {
+            var sp = sorted[i];
+            if (sp.start < cursor) continue;
+            if (sp.start > cursor) {
+              segments.push({ id: 'seg-' + idx++, text: rawText.slice(cursor, sp.start), type: 'neutral' });
+            }
+            segments.push({
+              id: 'seg-' + idx++,
+              text: rawText.slice(sp.start, sp.end),
+              type: sp.type,
+              reason: sp.reason,
+              weight: sp.weight,
+            });
+            cursor = sp.end;
+          }
+          if (cursor < rawText.length) {
+            segments.push({ id: 'seg-' + idx++, text: rawText.slice(cursor), type: 'neutral' });
+          }
+          return segments;
+        }
+
+        function clampHeadline35(text) {
+          var norm = String(text || '').replace(/\s+/g, ' ').trim();
+          if (norm.length <= 35) return norm;
+          return norm.slice(0, 34).trim() + '…';
+        }
+
+        function extractCoreTopicNoun(text) {
+          var cleaned = String(text || '')
+            .replace(NUMBER_UNIT_REGEX, '')
+            .replace(/[\[\]"'“”‘’.,!?…()]/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+          var tokens = cleaned.split(' ').map(function (t) {
+            return t.replace(/(은|는|이|가|을|를|의|에|서|로|으로|와|과|도)$/, '');
+          }).filter(function (t) {
+            return t.length >= 2 && !/^(지난달|올해|작년|최근|반면|한편|전체|기준|대비|이상|미만)$/.test(t);
+          });
+          return tokens[0] || '핵심 지표';
+        }
+
+        function buildDerivedAnalysis(segments, rawText) {
+          var fullText = rawText != null ? rawText : segments.map(function (s) { return s.text; }).join('');
+          var emotionSet = [];
+          var vagueSet = [];
+          for (var i = 0; i < segments.length; i++) {
+            var seg = segments[i];
+            var clean = seg.text.replace(/[\[\]"'“”‘’.,!?…]/g, '').replace(/\s+/g, ' ').trim();
+            if (!clean || clean.length < 2) continue;
+            if (seg.type === 'emotion') {
+              var s1 = clean.length > 14 ? clean.split(' ')[0] : clean;
+              if (s1.length >= 2 && emotionSet.indexOf(s1) === -1) emotionSet.push(s1);
+            } else if (seg.type === 'vague') {
+              var s2 = clean.length > 16 ? clean.slice(0, 16).trim() : clean;
+              if (s2.length >= 2 && vagueSet.indexOf(s2) === -1) vagueSet.push(s2);
+            }
+          }
+
+          var factTexts = segments.filter(function (s) { return s.type === 'fact'; }).map(function (s) { return s.text.trim(); }).filter(Boolean);
+          var headlineBattle;
+          if (!factTexts.length) {
+            headlineBattle = {
+              sensational: clampHeadline35('근거 수치 없는 충격 논란… 지금 확인 필수'),
+              dryFact: clampHeadline35('검증 가능한 정량 수치·공식 출처 미확인'),
+              counterAngle: clampHeadline35('수치 없는 주장, 객관 근거 확인부터 해야'),
+            };
+          } else {
+            var combined = factTexts.join(' ');
+            var nums = combined.match(NUMBER_UNIT_REGEX) || [];
+            var agencies = combined.match(OFFICIAL_AGENCY_REGEX) || [];
+            var mainNum = nums[0] ? nums[0].replace(/\s+/g, '') : '';
+            var subNum = nums[1] ? nums[1].replace(/\s+/g, '') : '';
+            var mainAgency = agencies[0] || '';
+            var topic = extractCoreTopicNoun(factTexts[0]);
+            headlineBattle = {
+              sensational: clampHeadline35(
+                mainNum
+                  ? topic + ' ' + mainNum + (subNum ? '·' + subNum : '') + ' 충격… 위기 현실화'
+                  : topic + ' 관련 발표 나왔다… 파장 불가피'
+              ),
+              dryFact: clampHeadline35(
+                mainAgency && mainNum
+                  ? mainAgency + ' 발표, ' + topic + ' ' + mainNum + (subNum ? '·' + subNum : '') + ' 기록'
+                  : mainNum
+                    ? topic + ' 관련 수치 ' + mainNum + (subNum ? '·' + subNum : '') + ' 집계'
+                    : (mainAgency || topic) + ' 공식 자료 기반 사실 확인'
+              ),
+              counterAngle: clampHeadline35(
+                mainNum
+                  ? topic + ' ' + mainNum + ' 숫자만 봐선 오해… 모수 따져야'
+                  : topic + ' 단일 단면만으로 일반화 근거 부족'
+              ),
+            };
+          }
+
+          var emotionSegs = segments.filter(function (s) { return s.type === 'emotion'; });
+          var vagueSegs = segments.filter(function (s) { return s.type === 'vague'; });
+          var factSegs = segments.filter(function (s) { return s.type === 'fact'; });
+          var allNums = fullText.match(NUMBER_UNIT_REGEX) || [];
+          var percentNums = allNums.filter(function (n) { return /%|퍼센트|배/.test(n); });
+          var blindSpots = [];
+
+          if (percentNums.length > 0) {
+            blindSpots.push({
+              id: 'bs-denominator',
+              oneLineWarning: '전체 모수 누락 — 비율(' + percentNums.slice(0, 2).join(', ') + ')만 있고 전체 비중·기저효과가 없음',
+            });
+          } else if (factSegs.length === 0) {
+            blindSpots.push({
+              id: 'bs-no-quant',
+              oneLineWarning: '정량 근거 부재 — 검증할 통계 수치나 공인 기관 출처가 전혀 없음',
+            });
+          } else {
+            blindSpots.push({
+              id: 'bs-baseline',
+              oneLineWarning: '비교 기준선 생략 — 제시된 수치(' + (allNums.slice(0, 2).join(', ') || '단일 지표') + ')의 장기 평균·대조군이 없음',
+            });
+          }
+
+          if (vagueSegs.length > 0) {
+            blindSpots.push({
+              id: 'bs-vague-source',
+              oneLineWarning: "익명 권위 의존 — 실명 출처 대신 '" + vagueSegs[0].text.trim().slice(0, 14) + "' 같은 모호한 주어로 반론 생략",
+            });
+          } else if (emotionSegs.length > 0) {
+            blindSpots.push({
+              id: 'bs-emotion-leap',
+              oneLineWarning: "인과관계 비약 — '" + emotionSegs[0].text.trim().slice(0, 12) + "' 등 감정 표현이 객관적 원인 분석을 대체함",
+            });
+          } else {
+            blindSpots.push({
+              id: 'bs-counter-omission',
+              oneLineWarning: '반대 논리 생략 — 동일 수치를 다르게 해석하는 상반된 변수가 배제됨',
+            });
+          }
+
+          return {
+            segments: segments,
+            emotionKeywords: emotionSet.slice(0, 3),
+            vagueKeywords: vagueSet.slice(0, 4),
+            headlineBattle: headlineBattle,
+            blindSpots: blindSpots.slice(0, 2),
+          };
+        }
+
+        function analyzeKoreanFraming(rawText) {
+          var evSpans = detectEmotionAndVagueSpans(rawText);
+          var fSpans = detectFactSpans(rawText, evSpans);
+          var segments = buildSegmentsFromSpans(rawText, evSpans.concat(fSpans));
+          return buildDerivedAnalysis(segments, rawText);
+        }
+
+        function reclassifySegment(current, segmentId, nextType) {
+          var reasonMap = {
+            fact: '사용자 직접 교정 · 검증 가능한 순수 팩트로 지정',
+            emotion: '사용자 직접 교정 · 감정 선동·과장 표현으로 변경',
+            vague: '사용자 직접 교정 · 모호한 권위·출처 은폐로 변경',
+            neutral: undefined,
+          };
+          var updated = current.segments.map(function (seg) {
+            if (seg.id !== segmentId) return seg;
+            return {
+              id: seg.id,
+              text: seg.text,
+              type: nextType,
+              reason: reasonMap[nextType],
+              weight: seg.weight,
+            };
+          });
+          return buildDerivedAnalysis(updated);
+        }
+
+        function selectTopFacts(segments, max) {
+          max = max || 3;
+          var list = segments.filter(function (s) {
+            if (s.type !== 'fact') return false;
+            if (s.reason && s.reason.indexOf('사용자 직접 교정') === 0) return true;
+            return isNewsRelatedFact(s.text);
+          });
+          if (list.length <= max) return list;
+          return list
+            .map(function (seg, index) {
+              var t = seg.text;
+              var numCount = (t.match(NUMBER_UNIT_REGEX) || []).length;
+              var agencyCount = (t.match(OFFICIAL_AGENCY_REGEX) || []).length;
+              var hasVerb = NEWS_REPORTING_VERB_REGEX.test(t) ? 1 : 0;
+              var hasQuote = DIRECT_QUOTE_REGEX.test(t) ? 1 : 0;
+              var score = numCount * 3 + agencyCount * 2 + hasVerb * 2 + hasQuote + Math.min(t.length, 140) / 70;
+              return { seg: seg, index: index, score: score };
+            })
+            .sort(function (a, b) { return b.score - a.score; })
+            .slice(0, max)
+            .sort(function (a, b) { return a.index - b.index; })
+            .map(function (item) { return item.seg; });
+        }
+
+        function computeMetrics(segments) {
+          var totalChars = 0, factChars = 0, emotionChars = 0, vagueChars = 0, neutralChars = 0;
+          var emotionCount = 0, vagueCount = 0, factCount = 0;
+          var emotionWeightedSum = 0, vagueWeightedSum = 0;
+
+          for (var i = 0; i < segments.length; i++) {
+            var seg = segments[i];
+            var len = seg.text.length;
+            totalChars += len;
+            if (seg.type === 'fact') { factChars += len; factCount += 1; }
+            else if (seg.type === 'emotion') { emotionChars += len; emotionCount += 1; emotionWeightedSum += seg.weight != null ? seg.weight : 2.0; }
+            else if (seg.type === 'vague') { vagueChars += len; vagueCount += 1; vagueWeightedSum += seg.weight != null ? seg.weight : 1.5; }
+            else { neutralChars += len; }
+          }
+
+          var fullText = segments.map(function (s) { return s.text; }).join('');
+          var nonEmptyBounds = getSentenceBounds(fullText).filter(function (b) {
+            return fullText.slice(b.start, b.end).trim().length > 0;
+          });
+          var flags = nonEmptyBounds.map(function () { return { hasFraming: false, hasFact: false }; });
+
+          var cursor = 0;
+          for (var k = 0; k < segments.length; k++) {
+            var sg = segments[k];
+            var sStart = cursor;
+            var sEnd = cursor + sg.text.length;
+            cursor = sEnd;
+            if (sg.type === 'neutral') continue;
+            for (var bIdx = 0; bIdx < nonEmptyBounds.length; bIdx++) {
+              var sb = nonEmptyBounds[bIdx];
+              if (sStart < sb.end && sEnd > sb.start) {
+                if (sg.type === 'emotion' || sg.type === 'vague') flags[bIdx].hasFraming = true;
+                else if (sg.type === 'fact') flags[bIdx].hasFact = true;
+              }
+            }
+          }
+
+          var sentenceStatuses = flags.map(function (f) {
+            if (f.hasFraming && f.hasFact) return 'mixed';
+            if (f.hasFraming) return 'framing';
+            if (f.hasFact) return 'fact';
+            return 'neutral';
+          });
+
+          var totalSentences = nonEmptyBounds.length;
+          var contaminatedSentences = flags.filter(function (f) { return f.hasFraming; }).length;
+          var factSentences = flags.filter(function (f) { return f.hasFact; }).length;
+          var contaminatedSentenceRatio = totalSentences > 0 ? Number(((contaminatedSentences / totalSentences) * 100).toFixed(1)) : 0;
+
+          var factPercent = totalChars > 0 ? Number(((factChars / totalChars) * 100).toFixed(1)) : 0;
+          var emotionPercent = totalChars > 0 ? Number(((emotionChars / totalChars) * 100).toFixed(1)) : 0;
+          var vaguePercent = totalChars > 0 ? Number(((vagueChars / totalChars) * 100).toFixed(1)) : 0;
+
+          var normBase = Math.max(totalChars, 200);
+          var emotionDensityPer500 = Number(((emotionWeightedSum / normBase) * 500).toFixed(1));
+          var vagueDensityPer500 = Number(((vagueWeightedSum / normBase) * 500).toFixed(1));
+
+          var emotionScore = Math.min(55, Number((emotionDensityPer500 * 2.4).toFixed(1)));
+          var vagueScore = Math.min(30, Number((vagueDensityPer500 * 2.5).toFixed(1)));
+          var sentenceScore = Math.min(20, Number(((contaminatedSentenceRatio / 100) * 20).toFixed(1)));
+          var factRelief = Math.min(15, Number(((factPercent / 100) * 20).toFixed(1)));
+
+          var aggroScore = totalChars > 0 ? Math.round(Math.max(0, Math.min(100, emotionScore + vagueScore + sentenceScore - factRelief))) : 0;
+
+          var grade = 'factual';
+          var gradeLabel = '✅ 팩트 위주';
+          if (aggroScore >= 55) { grade = 'aggro'; gradeLabel = '🚨 어그로 과다'; }
+          else if (aggroScore >= 25) { grade = 'caution'; gradeLabel = '⚠️ 포장 주의'; }
+
+          return {
+            totalChars: totalChars,
+            factChars: factChars,
+            emotionChars: emotionChars,
+            vagueChars: vagueChars,
+            neutralChars: neutralChars,
+            factPercent: factPercent,
+            emotionPercent: emotionPercent,
+            vaguePercent: vaguePercent,
+            emotionCount: emotionCount,
+            vagueCount: vagueCount,
+            factCount: factCount,
+            grade: grade,
+            gradeLabel: gradeLabel,
+            breakdown: {
+              aggroScore: aggroScore,
+              emotionScore: emotionScore,
+              vagueScore: vagueScore,
+              sentenceScore: sentenceScore,
+              factRelief: factRelief,
+              emotionWeightedSum: Number(emotionWeightedSum.toFixed(1)),
+              vagueWeightedSum: Number(vagueWeightedSum.toFixed(1)),
+              emotionDensityPer500: emotionDensityPer500,
+              vagueDensityPer500: vagueDensityPer500,
+              totalSentences: totalSentences,
+              contaminatedSentences: contaminatedSentences,
+              factSentences: factSentences,
+              contaminatedSentenceRatio: contaminatedSentenceRatio,
+              sentenceStatuses: sentenceStatuses,
+            },
+          };
+        }
+
+        function splitSegmentsBySentence(segments) {
+          var fullText = segments.map(function (s) { return s.text; }).join('');
+          if (!fullText) return [];
+          var nonEmptyBounds = getSentenceBounds(fullText).filter(function (b) {
+            return fullText.slice(b.start, b.end).trim().length > 0;
+          });
+          var chunks = [];
+          var pos = 0;
+          nonEmptyBounds.forEach(function (b, idx) {
+            if (b.start > pos) chunks.push({ start: pos, end: b.start, sentenceIndex: null });
+            chunks.push({ start: b.start, end: b.end, sentenceIndex: idx });
+            pos = b.end;
+          });
+          if (pos < fullText.length) chunks.push({ start: pos, end: fullText.length, sentenceIndex: null });
+
+          var segOffsets = [];
+          var cursor = 0;
+          for (var i = 0; i < segments.length; i++) {
+            var s = segments[i];
+            segOffsets.push({ start: cursor, end: cursor + s.text.length, segment: s });
+            cursor += s.text.length;
+          }
+
+          return chunks.map(function (chunk, chunkIdx) {
+            var pieces = [];
+            for (var j = 0; j < segOffsets.length; j++) {
+              var so = segOffsets[j];
+              if (so.end <= chunk.start || so.start >= chunk.end) continue;
+              var oStart = Math.max(chunk.start, so.start);
+              var oEnd = Math.min(chunk.end, so.end);
+              if (oEnd > oStart) {
+                pieces.push({ key: so.segment.id + '-' + chunkIdx + '-' + oStart, text: fullText.slice(oStart, oEnd), segment: so.segment });
+              }
+            }
+            return { key: 'sent-group-' + chunkIdx, sentenceIndex: chunk.sentenceIndex, pieces: pieces };
+          });
+        }
+
+        /* ---------------- Instagram Card News Renderer (1080x1350) ---------------- */
+        var CARD_THEMES = {
+          'editorial-light': {
+            id: 'editorial-light',
+            label: '크림 에디토리얼',
+            bg: '#F6F4EE',
+            surface: '#FFFFFF',
+            border: '#D6D3C9',
+            gridLine: 'rgba(17, 24, 39, 0.045)',
+            titleColor: '#0F172A',
+            bodyColor: '#1E293B',
+            mutedColor: '#64748B',
+            accent: '#0284C7',
+            accentSoft: 'rgba(2, 132, 199, 0.12)',
+            danger: '#E11D48',
+            dangerSoft: 'rgba(225, 29, 72, 0.12)',
+            warn: '#D97706',
+            warnSoft: 'rgba(217, 119, 6, 0.14)',
+            ok: '#059669',
+            okSoft: 'rgba(5, 150, 105, 0.12)',
+          },
+          'dark-magazine': {
+            id: 'dark-magazine',
+            label: '다크 매거진',
+            bg: '#0B1120',
+            surface: '#111C33',
+            border: 'rgba(148, 163, 184, 0.22)',
+            gridLine: 'rgba(148, 163, 184, 0.05)',
+            titleColor: '#F8FAFC',
+            bodyColor: '#E2E8F0',
+            mutedColor: '#94A3B8',
+            accent: '#38BDF8',
+            accentSoft: 'rgba(56, 189, 248, 0.16)',
+            danger: '#FB7185',
+            dangerSoft: 'rgba(244, 63, 94, 0.18)',
+            warn: '#FBBF24',
+            warnSoft: 'rgba(251, 191, 36, 0.16)',
+            ok: '#34D399',
+            okSoft: 'rgba(52, 211, 153, 0.16)',
+          },
+          'bold-contrast': {
+            id: 'bold-contrast',
+            label: '임팩트 블랙',
+            bg: '#09090B',
+            surface: '#141418',
+            border: 'rgba(250, 204, 21, 0.28)',
+            gridLine: 'rgba(255, 255, 255, 0.04)',
+            titleColor: '#FFFFFF',
+            bodyColor: '#F4F4F5',
+            mutedColor: '#A1A1AA',
+            accent: '#FACC15',
+            accentSoft: 'rgba(250, 204, 21, 0.16)',
+            danger: '#F43F5E',
+            dangerSoft: 'rgba(244, 63, 94, 0.2)',
+            warn: '#FB923C',
+            warnSoft: 'rgba(251, 146, 60, 0.18)',
+            ok: '#22D3EE',
+            okSoft: 'rgba(34, 211, 238, 0.16)',
+          },
+        };
+
+        var HIGHLIGHT_TOKEN_REGEX =
+          /(\d+(?:,\d{3})*(?:\.\d+)?\s*(?:%|퍼센트|%p|포인트|명|원|억|만|조|천|배|건|회|년|월|일|시간|분|초|점|위|세|대|호|달러|엔|유로|kg|km|m)|통계청|한국은행|기획재정부|교육부|보건복지부|고용노동부|과학기술정보통신부|국토교통부|산업통상자원부|금융위원회|공정거래위원회|경찰청|검찰|법원|국회|한국교육과정평가원|OECD|IMF|UN|WHO|연준|Fed|AI)/g;
+
+        function buildInstaCardSlides(input) {
+          var headline =
+            (input.customCoverTitle && input.customCoverTitle.trim()) ||
+            (input.articleMeta && input.articleMeta.title && input.articleMeta.title.trim()) ||
+            input.headlineBattle.dryFact ||
+            '감정과 과장을 덜어낸 오늘의 팩트';
+
+          var slides = [
+            {
+              kind: 'cover',
+              slideNumber: 1,
+              kicker: 'FRAMING X-RAY · 오늘의 팩트 탈수',
+              headline: headline,
+              metrics: input.metrics,
+            },
+          ];
+
+          if (!input.topFacts.length) {
+            slides.push({
+              kind: 'fact',
+              slideNumber: 2,
+              factOrder: 1,
+              text: '원문에서 수치·통계나 공인 기관 발표에 근거한 검증 가능한 뉴스 핵심 팩트가 검출되지 않았습니다.',
+              highlights: ['검증 가능한 뉴스 핵심 팩트'],
+            });
+          } else {
+            input.topFacts.forEach(function (f, idx) {
+              var m = f.text.match(HIGHLIGHT_TOKEN_REGEX) || [];
+              var uniq = [];
+              m.forEach(function (tk) { if (uniq.indexOf(tk) === -1) uniq.push(tk); });
+              slides.push({
+                kind: 'fact',
+                slideNumber: slides.length + 1,
+                factOrder: idx + 1,
+                text: f.text.trim(),
+                highlights: uniq,
+              });
+            });
+          }
+
+          slides.push({
+            kind: 'outro',
+            slideNumber: slides.length + 1,
+            headlineBattle: input.headlineBattle,
+            blindSpots: input.blindSpots,
+          });
+          return slides;
+        }
+
+        function drawRoundedRect(ctx, x, y, w, h, r) {
+          var rad = Math.min(r, w / 2, h / 2);
+          ctx.beginPath();
+          ctx.moveTo(x + rad, y);
+          ctx.arcTo(x + w, y, x + w, y + h, rad);
+          ctx.arcTo(x + w, y + h, x, y + h, rad);
+          ctx.arcTo(x, y + h, x, y, rad);
+          ctx.arcTo(x, y, x + w, y, rad);
+          ctx.closePath();
+        }
+
+        function wrapCanvasText(ctx, text, maxWidth) {
+          var clean = String(text || '').replace(/\s+/g, ' ').trim();
+          if (!clean) return [];
+          var lines = [];
+          var cur = '';
+          for (var i = 0; i < clean.length; i++) {
+            var ch = clean[i];
+            var cand = cur + ch;
+            if (ctx.measureText(cand).width > maxWidth && cur.length > 0) {
+              var lastSp = cur.lastIndexOf(' ');
+              if (lastSp > cur.length * 0.5) {
+                lines.push(cur.slice(0, lastSp).trim());
+                cur = (cur.slice(lastSp + 1) + ch).trimStart();
+              } else {
+                lines.push(cur.trim());
+                cur = ch === ' ' ? '' : ch;
+              }
+            } else {
+              cur = cand;
+            }
+          }
+          if (cur.trim()) lines.push(cur.trim());
+          return lines;
+        }
+
+        function renderInstaCardSlide(canvas, slide, totalSlides, themeId) {
+          var W = 1080, H = 1350;
+          if (canvas.width !== W) canvas.width = W;
+          if (canvas.height !== H) canvas.height = H;
+          var ctx = canvas.getContext('2d');
+          if (!ctx) return;
+
+          var theme = CARD_THEMES[themeId] || CARD_THEMES['editorial-light'];
+          ctx.fillStyle = theme.bg;
+          ctx.fillRect(0, 0, W, H);
+
+          ctx.strokeStyle = theme.gridLine;
+          ctx.lineWidth = 1;
+          for (var gx = 72; gx < W; gx += 72) { ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, H); ctx.stroke(); }
+          for (var gy = 72; gy < H; gy += 72) { ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W, gy); ctx.stroke(); }
+
+          var grad = ctx.createRadialGradient(W * 0.85, H * 0.12, 20, W * 0.85, H * 0.12, 520);
+          grad.addColorStop(0, theme.accentSoft);
+          grad.addColorStop(1, 'transparent');
+          ctx.fillStyle = grad;
+          ctx.fillRect(0, 0, W, H);
+
+          var padX = 76;
+          var contentW = W - padX * 2;
+
+          if (slide.kind === 'cover') {
+            ctx.font = '700 24px "IBM Plex Mono", "Noto Sans KR", sans-serif';
+            var kw = ctx.measureText(slide.kicker).width + 40;
+            drawRoundedRect(ctx, padX, 88, kw, 50, 10);
+            ctx.fillStyle = theme.accentSoft;
+            ctx.fill();
+            ctx.strokeStyle = theme.accent;
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+            ctx.fillStyle = theme.accent;
+            ctx.fillText(slide.kicker, padX + 20, 121);
+
+            ctx.font = '700 64px "Noto Sans KR", "Plus Jakarta Sans", sans-serif';
+            var headLines = wrapCanvasText(ctx, slide.headline, contentW).slice(0, 4);
+            var y = 248;
+            headLines.forEach(function (line) {
+              ctx.fillStyle = theme.titleColor;
+              ctx.fillText(line, padX, y);
+              y += 88;
+            });
+
+            var cardY = Math.max(y + 36, 610);
+            var cardH = 440;
+            drawRoundedRect(ctx, padX, cardY, contentW, cardH, 24);
+            ctx.fillStyle = theme.surface;
+            ctx.fill();
+            ctx.strokeStyle = theme.border;
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            var m = slide.metrics;
+            var gStyle =
+              m.grade === 'aggro'
+                ? { bg: theme.dangerSoft, fg: theme.danger }
+                : m.grade === 'factual'
+                  ? { bg: theme.okSoft, fg: theme.ok }
+                  : { bg: theme.warnSoft, fg: theme.warn };
+
+            drawRoundedRect(ctx, padX + 44, cardY + 42, 270, 58, 12);
+            ctx.fillStyle = gStyle.bg;
+            ctx.fill();
+            ctx.strokeStyle = gStyle.fg;
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            ctx.fillStyle = gStyle.fg;
+            ctx.font = '700 28px "Noto Sans KR", sans-serif';
+            ctx.fillText(m.gradeLabel, padX + 68, cardY + 81);
+
+            ctx.fillStyle = theme.mutedColor;
+            ctx.font = '600 22px "Noto Sans KR", sans-serif';
+            ctx.fillText('어그로 지수', padX + contentW - 260, cardY + 62);
+            ctx.fillStyle = theme.titleColor;
+            ctx.font = '700 54px "IBM Plex Mono", monospace';
+            ctx.fillText(String(m.breakdown.aggroScore), padX + contentW - 260, cardY + 124);
+            ctx.fillStyle = theme.mutedColor;
+            ctx.font = '600 26px "IBM Plex Mono", monospace';
+            ctx.fillText('/ 100', padX + contentW - 170, cardY + 124);
+
+            var cx = padX + 165, cy = cardY + 280, r = 92, lw = 24;
+            ctx.beginPath();
+            ctx.arc(cx, cy, r, 0, Math.PI * 2);
+            ctx.strokeStyle = theme.border;
+            ctx.lineWidth = lw;
+            ctx.stroke();
+
+            var startAng = -Math.PI / 2;
+            var fRad = (m.factPercent / 100) * Math.PI * 2;
+            var eRad = (m.emotionPercent / 100) * Math.PI * 2;
+            var vRad = (m.vaguePercent / 100) * Math.PI * 2;
+            if (fRad > 0) { ctx.beginPath(); ctx.arc(cx, cy, r, startAng, startAng + fRad); ctx.strokeStyle = theme.accent; ctx.lineWidth = lw; ctx.stroke(); }
+            if (eRad > 0) { ctx.beginPath(); ctx.arc(cx, cy, r, startAng + fRad, startAng + fRad + eRad); ctx.strokeStyle = theme.danger; ctx.lineWidth = lw; ctx.stroke(); }
+            if (vRad > 0) { ctx.beginPath(); ctx.arc(cx, cy, r, startAng + fRad + eRad, startAng + fRad + eRad + vRad); ctx.strokeStyle = theme.warn; ctx.lineWidth = lw; ctx.stroke(); }
+
+            ctx.fillStyle = theme.titleColor;
+            ctx.font = '700 38px "IBM Plex Mono", monospace';
+            var pctTxt = m.factPercent + '%';
+            ctx.fillText(pctTxt, cx - ctx.measureText(pctTxt).width / 2, cy + 8);
+            ctx.fillStyle = theme.mutedColor;
+            ctx.font = '600 18px "Noto Sans KR", sans-serif';
+            ctx.fillText('순수 팩트', cx - ctx.measureText('순수 팩트').width / 2, cy + 36);
+
+            var barX = padX + 320, barW = contentW - 364;
+            [
+              { label: '순수 팩트', val: m.factPercent, color: theme.accent },
+              { label: '감정 선동', val: m.emotionPercent, color: theme.danger },
+              { label: '모호 출처', val: m.vaguePercent, color: theme.warn },
+            ].forEach(function (it, idx) {
+              var by = cardY + 204 + idx * 72;
+              ctx.fillStyle = theme.bodyColor;
+              ctx.font = '600 22px "Noto Sans KR", sans-serif';
+              ctx.fillText(it.label, barX, by);
+              ctx.fillStyle = it.color;
+              ctx.font = '700 24px "IBM Plex Mono", monospace';
+              var vs = it.val + '%';
+              ctx.fillText(vs, barX + barW - ctx.measureText(vs).width, by);
+              drawRoundedRect(ctx, barX, by + 14, barW, 14, 7);
+              ctx.fillStyle = theme.gridLine;
+              ctx.fill();
+              drawRoundedRect(ctx, barX, by + 14, Math.max(8, (Math.min(100, it.val) / 100) * barW), 14, 7);
+              ctx.fillStyle = it.color;
+              ctx.fill();
+            });
+          } else if (slide.kind === 'fact') {
+            ctx.fillStyle = theme.mutedColor;
+            ctx.font = '700 24px "IBM Plex Mono", "Noto Sans KR", sans-serif';
+            ctx.fillText('탈수 완료 · 뉴스 핵심 팩트', padX, 118);
+
+            ctx.fillStyle = theme.accent;
+            ctx.font = '700 120px "IBM Plex Mono", sans-serif';
+            ctx.fillText('0' + slide.factOrder, padX, 276);
+
+            drawRoundedRect(ctx, padX, 314, 120, 8, 4);
+            ctx.fillStyle = theme.accent;
+            ctx.fill();
+
+            var boxY = 376, boxH = 690;
+            drawRoundedRect(ctx, padX, boxY, contentW, boxH, 24);
+            ctx.fillStyle = theme.surface;
+            ctx.fill();
+            ctx.strokeStyle = theme.border;
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            ctx.fillStyle = theme.accentSoft;
+            ctx.font = '700 130px Georgia, serif';
+            ctx.fillText('“', padX + 42, boxY + 135);
+
+            ctx.font = '600 42px "Noto Sans KR", "Plus Jakarta Sans", sans-serif';
+            var lines = wrapCanvasText(ctx, slide.text, contentW - 104).slice(0, 7);
+            var startY = boxY + Math.max(175, (boxH - lines.length * 68) / 2 + 44);
+            var sortedHl = (slide.highlights || []).slice().sort(function (a, b) { return b.length - a.length; });
+
+            lines.forEach(function (line, li) {
+              var ly = startY + li * 68;
+              var lx = padX + 52;
+              var rem = line;
+              while (rem.length > 0) {
+                var best = null;
+                for (var hi = 0; hi < sortedHl.length; hi++) {
+                  var tk = sortedHl[hi];
+                  var fi = rem.indexOf(tk);
+                  if (fi !== -1 && (!best || fi < best.idx)) best = { idx: fi, token: tk };
+                }
+                if (!best) {
+                  ctx.fillStyle = theme.bodyColor;
+                  ctx.fillText(rem, lx, ly);
+                  break;
+                }
+                if (best.idx > 0) {
+                  var bef = rem.slice(0, best.idx);
+                  ctx.fillStyle = theme.bodyColor;
+                  ctx.fillText(bef, lx, ly);
+                  lx += ctx.measureText(bef).width;
+                }
+                var tkw = ctx.measureText(best.token).width;
+                drawRoundedRect(ctx, lx - 4, ly - 38, tkw + 8, 48, 8);
+                ctx.fillStyle = theme.accentSoft;
+                ctx.fill();
+                ctx.fillStyle = theme.accent;
+                ctx.fillText(best.token, lx, ly);
+                lx += tkw;
+                rem = rem.slice(best.idx + best.token.length);
+              }
+            });
+
+            ctx.fillStyle = theme.mutedColor;
+            ctx.font = '600 22px "Noto Sans KR", sans-serif';
+            ctx.fillText('✓ 감정 수식·익명 추측을 제거한 검증 가능 진술', padX + 52, boxY + boxH - 44);
+          } else {
+            ctx.fillStyle = theme.accent;
+            ctx.font = '700 24px "IBM Plex Mono", "Noto Sans KR", sans-serif';
+            ctx.fillText('FRAMING CHECK · 제목 전환 & 사각지대', padX, 118);
+
+            ctx.fillStyle = theme.titleColor;
+            ctx.font = '700 52px "Noto Sans KR", sans-serif';
+            ctx.fillText('포장을 벗기면 보이는 차이', padX, 200);
+
+            var c1Y = 266;
+            drawRoundedRect(ctx, padX, c1Y, contentW, 210, 20);
+            ctx.fillStyle = theme.surface; ctx.fill();
+            ctx.strokeStyle = theme.danger; ctx.lineWidth = 2; ctx.stroke();
+            ctx.fillStyle = theme.danger;
+            ctx.font = '700 24px "Noto Sans KR", sans-serif';
+            ctx.fillText('🔴 낚시성 기사 프레이밍', padX + 38, c1Y + 56);
+            ctx.fillStyle = theme.bodyColor;
+            ctx.font = '700 36px "Noto Sans KR", sans-serif';
+            wrapCanvasText(ctx, slide.headlineBattle.sensational, contentW - 76).slice(0, 2).forEach(function (l, i) {
+              ctx.fillText(l, padX + 38, c1Y + 116 + i * 50);
+            });
+
+            var c2Y = 508;
+            drawRoundedRect(ctx, padX, c2Y, contentW, 210, 20);
+            ctx.fillStyle = theme.surface; ctx.fill();
+            ctx.strokeStyle = theme.accent; ctx.lineWidth = 2; ctx.stroke();
+            ctx.fillStyle = theme.accent;
+            ctx.font = '700 24px "Noto Sans KR", sans-serif';
+            ctx.fillText('🔵 건조한 팩트 헤드라인', padX + 38, c2Y + 56);
+            ctx.fillStyle = theme.titleColor;
+            ctx.font = '700 36px "Noto Sans KR", sans-serif';
+            wrapCanvasText(ctx, slide.headlineBattle.dryFact, contentW - 76).slice(0, 2).forEach(function (l, i) {
+              ctx.fillText(l, padX + 38, c2Y + 116 + i * 50);
+            });
+
+            var c3Y = 762;
+            drawRoundedRect(ctx, padX, c3Y, contentW, 310, 20);
+            ctx.fillStyle = theme.warnSoft; ctx.fill();
+            ctx.strokeStyle = theme.warn; ctx.lineWidth = 2; ctx.stroke();
+            ctx.fillStyle = theme.warn;
+            ctx.font = '700 26px "Noto Sans KR", sans-serif';
+            ctx.fillText('⚠️ 이 기사에서 빠진 사각지대', padX + 38, c3Y + 62);
+            var spotTxt = (slide.blindSpots[0] && slide.blindSpots[0].oneLineWarning) || '전체 모수와 비교 대조군을 함께 확인하세요.';
+            ctx.fillStyle = theme.titleColor;
+            ctx.font = '600 32px "Noto Sans KR", sans-serif';
+            wrapCanvasText(ctx, spotTxt, contentW - 76).slice(0, 3).forEach(function (l, i) {
+              ctx.fillText(l, padX + 38, c3Y + 132 + i * 52);
+            });
+          }
+
+          var fy = H - 76;
+          ctx.strokeStyle = theme.border;
+          ctx.lineWidth = 1.5;
+          ctx.beginPath(); ctx.moveTo(padX, fy - 36); ctx.lineTo(W - padX, fy - 36); ctx.stroke();
+          var dx = padX;
+          for (var si = 1; si <= totalSlides; si++) {
+            var cur = si === slide.slideNumber;
+            var dw = cur ? 34 : 12;
+            drawRoundedRect(ctx, dx, fy - 6, dw, 12, 6);
+            ctx.fillStyle = cur ? theme.accent : theme.border;
+            ctx.fill();
+            dx += dw + 10;
+          }
+          ctx.fillStyle = theme.mutedColor;
+          ctx.font = '700 22px "IBM Plex Mono", monospace';
+          var cue = slide.slideNumber < totalSlides
+            ? slide.slideNumber + ' / ' + totalSlides + '  ·  SWIPE →'
+            : slide.slideNumber + ' / ' + totalSlides + '  ·  FRAMING X-RAY';
+          ctx.fillText(cue, W - padX - ctx.measureText(cue).width, fy + 7);
+        }
+
+        function triggerPngDownload(canvas, filename) {
+          var a = document.createElement('a');
+          a.href = canvas.toDataURL('image/png');
+          a.download = filename;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        }
+
+        function downloadStandaloneHtml() {
+          var html = CLEAN_STANDALONE_HTML;
+          if (!html) return;
+          var blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+          var url = URL.createObjectURL(blob);
+          var a = document.createElement('a');
+          a.href = url;
+          a.download = 'index.html';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          window.setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+        }
+
+        function copyTextToClipboard(text) {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            return navigator.clipboard.writeText(text).then(function () { return true; }).catch(function () { return false; });
+          }
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          ta.style.position = 'fixed';
+          ta.style.left = '-9999px';
+          document.body.appendChild(ta);
+          ta.select();
+          var ok = false;
+          try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+          document.body.removeChild(ta);
+          return Promise.resolve(ok);
+        }
+
+        /* ---------------- Application State ---------------- */
+        var state = {
+          rawText: SAMPLE_CASES[0].text,
+          urlInput: '',
+          activeSampleId: SAMPLE_CASES[0].id,
+          extractedMeta: null,
+          analyzedMeta: null,
+          isInputCollapsed: false,
+          isExtracting: false,
+          extractError: null,
+          activeLayer: 'all',
+          analysis: analyzeKoreanFraming(SAMPLE_CASES[0].text),
+          isAccordionOpen: false,
+          dehydrateMode: false,
+          editingFactId: null,
+          selectedAccordionSegId: null,
+          focusedSentenceIndex: null,
+          copiedSummary: false,
+          algoTab: 'formula',
+          isInstaModalOpen: false,
+          instaThemeId: 'editorial-light',
+          instaCoverTitle: SAMPLE_CASES[0].title,
+          instaSlideIdx: 0,
+          isExportingAll: false,
+        };
+
+        function getDerivedState() {
+          if (!state.analysis) return { metrics: null, topFacts: [], sentenceGroups: [] };
+          return {
+            metrics: computeMetrics(state.analysis.segments),
+            topFacts: selectTopFacts(state.analysis.segments, 3),
+            sentenceGroups: splitSegmentsBySentence(state.analysis.segments),
+          };
+        }
+
+        /* ---------------- Render Functions ---------------- */
+        function renderDonutSvg(metrics) {
+          var radius = 44;
+          var circ = 2 * Math.PI * radius;
+          var fLen = (metrics.factPercent / 100) * circ;
+          var eLen = (metrics.emotionPercent / 100) * circ;
+          var vLen = (metrics.vaguePercent / 100) * circ;
+
+          return (
+            '<div class="donut-wrap">' +
+            '<svg viewBox="0 0 112 112" width="112" height="112" style="transform: rotate(-90deg)" role="img" aria-label="순수 팩트 비율 ' + metrics.factPercent + '%">' +
+            '<circle cx="56" cy="56" r="' + radius + '" fill="none" stroke="rgba(51,65,85,0.45)" stroke-width="12"></circle>' +
+            (vLen > 0 ? '<circle cx="56" cy="56" r="' + radius + '" fill="none" stroke="#fbbf24" stroke-width="12" stroke-dasharray="' + vLen + ' ' + circ + '" stroke-dashoffset="' + -(fLen + eLen) + '"></circle>' : '') +
+            (eLen > 0 ? '<circle cx="56" cy="56" r="' + radius + '" fill="none" stroke="#f43f5e" stroke-width="12" stroke-dasharray="' + eLen + ' ' + circ + '" stroke-dashoffset="' + -fLen + '"></circle>' : '') +
+            (fLen > 0 ? '<circle cx="56" cy="56" r="' + radius + '" fill="none" stroke="#38bdf8" stroke-width="12" stroke-dasharray="' + fLen + ' ' + circ + '" stroke-dashoffset="0"></circle>' : '') +
+            '</svg>' +
+            '<div class="donut-center">' +
+            '<span class="font-mono" style="font-size:20px;font-weight:700;color:#f1f5f9;line-height:1;">' + metrics.factPercent + '%</span>' +
+            '<span style="margin-top:4px;font-size:10px;color:#94a3b8;">순수 팩트</span>' +
+            '</div>' +
+            '</div>'
+          );
+        }
+
+        function renderTopBar() {
+          var tabs = [
+            { id: 'all', label: '전체 레이어' },
+            { id: 'emotion', label: '감정 트리거', dot: '#fb7185' },
+            { id: 'vague', label: '모호한 출처', dot: '#fbbf24' },
+            { id: 'fact', label: '순수 팩트', dot: '#38bdf8' },
+          ];
+          return (
+            '<header class="topbar">' +
+            '<a href="#top" data-action="brand-reset" class="brand-link">Framing X-Ray</a>' +
+            '<nav class="topbar-nav" aria-label="X-레이 태깅 레이어 필터">' +
+            tabs.map(function (t) {
+              return (
+                '<button type="button" data-action="set-layer" data-layer="' + t.id + '" class="nav-tab ' + (state.activeLayer === t.id ? 'is-active' : '') + '">' +
+                (t.dot ? '<span class="nav-dot" style="background:' + t.dot + '"></span>' : '') +
+                '<span>' + t.label + '</span>' +
+                '</button>'
+              );
+            }).join('') +
+            '</nav>' +
+            '<div class="topbar-actions">' +
+            '<button type="button" data-action="reset-sample" class="btn btn-secondary">' + ICONS.reset + '<span>기본 샘플 복원</span></button>' +
+            '<button type="button" data-action="download-html" class="btn btn-sky-soft" title="단일 index.html 파일로 다운로드 (더블클릭 및 Vercel 즉시 배포용)">' + ICONS.download + '<span>index.html 다운로드</span></button>' +
+            '</div>' +
+            '</header>'
+          );
+        }
+
+        function renderInputPanel() {
+          var charCount = state.rawText.length;
+          var activeSample = null;
+          for (var i = 0; i < SAMPLE_CASES.length; i++) {
+            if (SAMPLE_CASES[i].id === state.activeSampleId) activeSample = SAMPLE_CASES[i];
+          }
+
+          if (state.isInputCollapsed) {
+            var summary =
+              (state.extractedMeta && state.extractedMeta.title) ||
+              (activeSample && activeSample.title) ||
+              state.rawText.replace(/\s+/g, ' ').trim().slice(0, 60) ||
+              '분석된 원문';
+            return (
+              '<section class="panel collapsed-bar" aria-label="입력 원문 요약 바">' +
+              '<div style="display:flex;align-items:center;gap:12px;min-width:0;flex:1;">' +
+              '<span style="font-size:12px;font-weight:600;color:var(--sky-400);white-space:nowrap;">분석 대상</span>' +
+              '<p style="margin:0;font-size:12px;font-weight:500;color:var(--text-200);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + escapeHtml(summary) + '</p>' +
+              '<span class="font-mono" style="font-size:12px;color:var(--text-400);white-space:nowrap;">' + charCount.toLocaleString() + '자</span>' +
+              '</div>' +
+              '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">' +
+              '<div style="display:flex;gap:4px;padding:2px;background:var(--bg-inset);border:1px solid var(--border);border-radius:6px;">' +
+              SAMPLE_CASES.map(function (s, idx) {
+                return '<button type="button" data-action="select-sample" data-sample="' + s.id + '" style="padding:4px 10px;border-radius:4px;font-size:11px;font-weight:500;' + (state.activeSampleId === s.id ? 'background:#1e293b;color:#f1f5f9;' : 'color:#94a3b8;') + '">' + (idx + 1) + '. ' + s.shortLabel + '</button>';
+              }).join('') +
+              '</div>' +
+              '<button type="button" data-action="expand-input" class="btn btn-secondary">' + ICONS.edit + '<span>다시 입력하기</span></button>' +
+              '</div>' +
+              '</section>'
+            );
+          }
+
+          var detectedUrl = isLikelyStandaloneUrl(state.rawText);
+
+          return (
+            '<section class="panel" aria-labelledby="input-title">' +
+            '<div class="panel-header">' +
+            '<h2 id="input-title" class="panel-title">01. 원문 입력 &amp; 실전 샘플</h2>' +
+            '<span class="font-mono" style="font-size:12px;color:var(--text-400);">' + charCount.toLocaleString() + '자</span>' +
+            '</div>' +
+            '<div class="samples-strip">' +
+            '<div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-400);"><span>실전 검증 샘플 (클릭 즉시 해부)</span><span>3종</span></div>' +
+            '<div class="samples-grid">' +
+            SAMPLE_CASES.map(function (s, idx) {
+              return (
+                '<button type="button" data-action="select-sample" data-sample="' + s.id + '" class="sample-btn ' + (state.activeSampleId === s.id ? 'is-active' : '') + '">' +
+                '<span style="font-weight:600;color:var(--text-100);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + (idx + 1) + '. ' + s.shortLabel + '</span>' +
+                '<span style="font-size:11px;color:var(--text-400);white-space:nowrap;">' + s.mediaFormat + '</span>' +
+                '</button>'
+              );
+            }).join('') +
+            '</div>' +
+            '</div>' +
+            '<div class="input-workspace">' +
+            '<form id="url-extract-form" style="display:flex;flex-direction:column;gap:6px;">' +
+            '<label for="news-url-input" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--text-300);">' + ICONS.link + '<span>뉴스 링크(URL)로 불러오기</span></label>' +
+            '<div class="url-row">' +
+            '<input id="news-url-input" type="url" class="text-input" value="' + escapeHtml(state.urlInput) + '" placeholder="https://news.example.com/article/..." />' +
+            '<button type="submit" class="btn btn-secondary" ' + (state.isExtracting || !state.urlInput.trim() ? 'disabled' : '') + '>' +
+            '<span>' + (state.isExtracting ? '추출 중...' : '본문 추출') + '</span>' +
+            '</button>' +
+            '</div>' +
+            '</form>' +
+            (state.extractError
+              ? '<div role="alert" style="padding:10px 14px;border-radius:6px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.35);font-size:12px;color:var(--amber-200);">' + escapeHtml(state.extractError) + '</div>'
+              : '') +
+            (state.extractedMeta && !state.extractError
+              ? '<div style="padding:8px 14px;border-radius:6px;background:rgba(14,165,233,0.08);border:1px solid rgba(14,165,233,0.3);font-size:12px;">' +
+                '<div style="font-weight:600;color:var(--sky-200);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">추출 완료: ' + escapeHtml(state.extractedMeta.title) + '</div>' +
+                '<div style="font-size:11px;color:var(--text-400);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + escapeHtml(state.extractedMeta.url) + '</div>' +
+                '</div>'
+              : '') +
+            '<div style="display:flex;flex-direction:column;gap:8px;">' +
+            '<div style="display:flex;align-items:center;justify-content:space-between;">' +
+            '<label for="raw-article-input" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--text-300);">' + ICONS.file + '<span>기사 본문 직접 복붙 · 확인</span></label>' +
+            (state.rawText.length ? '<button type="button" data-action="clear-text" style="display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--text-400);">' + ICONS.eraser + '<span>비우기</span></button>' : '') +
+            '</div>' +
+            (detectedUrl
+              ? '<div style="padding:8px 12px;border-radius:6px;background:rgba(14,165,233,0.12);border:1px solid rgba(56,189,248,0.45);display:flex;align-items:center;justify-content:space-between;gap:8px;">' +
+                '<span style="font-size:12px;color:var(--sky-200);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">링크 주소가 입력되었습니다. 본문을 자동으로 가져올까요?</span>' +
+                '<button type="button" data-action="extract-detected-url" data-url="' + escapeHtml(detectedUrl) + '" class="btn btn-primary" style="padding:5px 10px;font-size:11px;">' + (state.isExtracting ? '추출 중...' : '링크에서 본문 추출하기') + '</button>' +
+                '</div>'
+              : '') +
+            '<div class="textarea-row">' +
+            '<textarea id="raw-article-input" class="article-textarea" placeholder="추출된 기사 본문이 여기에 채워집니다. 직접 뉴스 본문, 유튜브 쇼츠 대본, 커뮤니티 글을 붙여넣을 수도 있습니다...">' + escapeHtml(state.rawText) + '</textarea>' +
+            '<button type="button" data-action="analyze" class="btn btn-primary analyze-cta" ' + (state.isExtracting || !state.rawText.trim() ? 'disabled' : '') + '>' + ICONS.scan + '<span>X-레이 해부 시작</span></button>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</section>'
+          );
+        }
+
+        function renderAlgorithmPanel(metrics) {
+          var b = metrics.breakdown;
+          var gaugeLeft = Math.max(2, Math.min(98, b.aggroScore));
+          var tabContent = '';
+
+          if (state.algoTab === 'formula') {
+            var bars = [
+              { label: '감정선동어 밀도', val: '+' + b.emotionScore, max: '/ 55', pct: Math.min(100, (b.emotionScore / 55) * 100), color: '#f43f5e', textColor: 'var(--rose-300)' },
+              { label: '모호한 출처 · 추측', val: '+' + b.vagueScore, max: '/ 30', pct: Math.min(100, (b.vagueScore / 30) * 100), color: '#fbbf24', textColor: 'var(--amber-300)' },
+              { label: '문장 오염도 (' + b.contaminatedSentences + '/' + b.totalSentences + '문장)', val: '+' + b.sentenceScore, max: '/ 20', pct: Math.min(100, (b.sentenceScore / 20) * 100), color: '#a78bfa', textColor: 'var(--violet-300)' },
+              { label: '뉴스 팩트 상쇄', val: '-' + b.factRelief, max: '/ -15', pct: Math.min(100, (b.factRelief / 15) * 100), color: '#38bdf8', textColor: 'var(--sky-300)' },
+            ];
+            tabContent =
+              '<div class="panel-pad" style="display:flex;flex-direction:column;gap:18px;">' +
+              '<div class="sub-box" style="padding:16px;display:flex;flex-direction:column;gap:12px;">' +
+              '<div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;">' +
+              '<span style="font-weight:600;color:var(--text-200);">어그로 판정 게이지 (0 ~ 100점)</span>' +
+              '<span class="font-mono" style="font-weight:700;color:#fff;">현재 ' + b.aggroScore + '점 · ' + metrics.gradeLabel + '</span>' +
+              '</div>' +
+              '<div style="position:relative;padding-top:18px;padding-bottom:4px;">' +
+              '<div style="position:absolute;top:0;left:' + gaugeLeft + '%;transform:translateX(-50%);pointer-events:none;">' +
+              '<span class="font-mono" style="font-size:11px;font-weight:700;color:#fff;background:#1e293b;border:1px solid #475569;padding:1px 6px;border-radius:4px;">' + b.aggroScore + '</span>' +
+              '</div>' +
+              '<div style="height:14px;width:100%;border-radius:3px;overflow:hidden;display:flex;border:1px solid var(--border);">' +
+              '<div style="width:25%;background:rgba(16,185,129,0.45);border-right:1px solid #0f172a;"></div>' +
+              '<div style="width:30%;background:rgba(245,158,11,0.45);border-right:1px solid #0f172a;"></div>' +
+              '<div style="width:45%;background:rgba(244,63,94,0.5);"></div>' +
+              '</div>' +
+              '<div style="position:absolute;top:22px;bottom:0;left:' + gaugeLeft + '%;width:2px;transform:translateX(-50%);background:#fff;box-shadow:0 0 8px rgba(255,255,255,0.9);"></div>' +
+              '</div>' +
+              '<div style="display:grid;grid-template-columns:repeat(3,1fr);font-size:11px;" class="font-mono">' +
+              '<span style="color:var(--emerald-300);">0~24 ✅ 팩트 위주</span>' +
+              '<span style="color:var(--amber-300);text-align:center;">25~54 ⚠️ 포장 주의</span>' +
+              '<span style="color:var(--rose-300);text-align:right;">55~100 🚨 어그로 과다</span>' +
+              '</div>' +
+              '</div>' +
+              '<div class="grid-algo-split">' +
+              '<div class="sub-box" style="padding:16px;display:flex;flex-direction:column;gap:12px;">' +
+              '<div style="display:flex;justify-content:space-between;font-size:12px;"><span style="font-weight:600;color:var(--text-200);">점수 구성 막대</span><span style="font-size:11px;color:var(--text-400);">항목별 기여도</span></div>' +
+              bars.map(function (bar) {
+                return (
+                  '<div style="display:flex;flex-direction:column;gap:4px;">' +
+                  '<div style="display:flex;justify-content:space-between;font-size:12px;">' +
+                  '<span style="color:var(--text-300);">' + bar.label + '</span>' +
+                  '<span class="font-mono"><strong style="color:' + bar.textColor + ';">' + bar.val + '</strong> <span style="color:var(--text-500);font-size:11px;">' + bar.max + '</span></span>' +
+                  '</div>' +
+                  '<div style="height:8px;width:100%;background:#0f172a;border-radius:3px;overflow:hidden;"><div style="height:100%;width:' + bar.pct + '%;background:' + bar.color + ';border-radius:3px;"></div></div>' +
+                  '</div>'
+                );
+              }).join('') +
+              '</div>' +
+              '<div class="sub-box" style="padding:16px;display:flex;flex-direction:column;justify-content:space-between;gap:12px;">' +
+              '<span style="font-size:12px;font-weight:600;color:var(--text-200);">실시간 점수 계산식</span>' +
+              '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;text-align:center;" class="font-mono">' +
+              '<div style="padding:10px 6px;border-radius:6px;background:rgba(244,63,94,0.1);border:1px solid rgba(244,63,94,0.3);"><div style="font-size:10px;color:var(--rose-300);">감정</div><div style="font-size:14px;font-weight:700;color:var(--rose-200);">+' + b.emotionScore + '</div></div>' +
+              '<div style="padding:10px 6px;border-radius:6px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);"><div style="font-size:10px;color:var(--amber-300);">모호</div><div style="font-size:14px;font-weight:700;color:var(--amber-200);">+' + b.vagueScore + '</div></div>' +
+              '<div style="padding:10px 6px;border-radius:6px;background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.3);"><div style="font-size:10px;color:var(--violet-300);">문장</div><div style="font-size:14px;font-weight:700;color:var(--violet-200);">+' + b.sentenceScore + '</div></div>' +
+              '<div style="padding:10px 6px;border-radius:6px;background:rgba(56,189,248,0.1);border:1px solid rgba(56,189,248,0.3);"><div style="font-size:10px;color:var(--sky-300);">팩트</div><div style="font-size:14px;font-weight:700;color:var(--sky-200);">-' + b.factRelief + '</div></div>' +
+              '</div>' +
+              '<div style="padding-top:10px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:12px;">' +
+              '<span style="color:var(--text-400);">선동어 0건이면 수치 적어도 0점</span>' +
+              '<span class="font-mono" style="font-weight:700;font-size:16px;color:#fff;">= ' + b.aggroScore + '점</span>' +
+              '</div>' +
+              '</div>' +
+              '</div>' +
+              '</div>';
+          } else if (state.algoTab === 'weights') {
+            var tiers = [
+              { tier: '극단 은유 · 속보', mult: '3.0', pct: 100, kw: '[속보] · 대폭발 · 대재앙 · 줄도산 · 종말', color: '#f43f5e', tc: 'var(--rose-300)' },
+              { tier: '공포 · 과장 · 부호', mult: '2.0', pct: 67, kw: '역대급 · 충격 · 경악 · 폭등/폭락 · !! · ?!', color: '#fb7185', tc: 'var(--rose-200)' },
+              { tier: '모호한 출처 · 여론', mult: '1.5', pct: 50, kw: '관계자 · 소식통 · 커뮤니티 중심 · ~로 알려졌다', color: '#fbbf24', tc: 'var(--amber-300)' },
+              { tier: '긴박 · 논란 수식어', mult: '1.3', pct: 43, kw: '결국 · 벼랑 끝 · 적신호 · 심각 · 무력화', color: 'rgba(253,164,175,0.8)', tc: 'var(--text-200)' },
+            ];
+            var hits = state.analysis.segments
+              .filter(function (s) { return s.type === 'emotion' || s.type === 'vague'; })
+              .map(function (s) { return { text: s.text.trim(), type: s.type, weight: s.weight != null ? s.weight : (s.type === 'emotion' ? 2.0 : 1.5) }; })
+              .sort(function (a, b) { return b.weight - a.weight; })
+              .slice(0, 5);
+
+            tabContent =
+              '<div class="panel-pad grid-algo-split">' +
+              '<div class="sub-box" style="padding:16px;display:flex;flex-direction:column;gap:14px;">' +
+              '<div style="display:flex;justify-content:space-between;font-size:12px;"><span style="font-weight:600;color:var(--text-200);">표현 위험도별 가중치</span><span class="font-mono" style="color:var(--text-400);">×1.2 ~ ×3.0 배수</span></div>' +
+              tiers.map(function (it) {
+                return (
+                  '<div style="display:flex;flex-direction:column;gap:4px;">' +
+                  '<div style="display:flex;justify-content:space-between;font-size:12px;"><span style="font-weight:600;color:' + it.tc + ';">' + it.tier + '</span><span class="font-mono" style="font-weight:700;color:var(--text-100);">×' + it.mult + '</span></div>' +
+                  '<div style="height:8px;width:100%;background:#0f172a;border-radius:3px;overflow:hidden;"><div style="height:100%;width:' + it.pct + '%;background:' + it.color + ';border-radius:3px;"></div></div>' +
+                  '<div style="font-size:11px;color:var(--text-400);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + it.kw + '</div>' +
+                  '</div>'
+                );
+              }).join('') +
+              '</div>' +
+              '<div class="sub-box" style="padding:16px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;">' +
+              '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">' +
+              '<div style="padding:12px;border-radius:6px;background:rgba(15,23,42,0.75);border:1px solid var(--border);"><div style="font-size:11px;color:var(--text-400);">500자당 감정 빈도</div><div class="font-mono" style="margin-top:4px;font-size:18px;font-weight:700;color:var(--rose-300);">' + b.emotionDensityPer500 + '</div></div>' +
+              '<div style="padding:12px;border-radius:6px;background:rgba(15,23,42,0.75);border:1px solid var(--border);"><div style="font-size:11px;color:var(--text-400);">500자당 모호 빈도</div><div class="font-mono" style="margin-top:4px;font-size:18px;font-weight:700;color:var(--amber-300);">' + b.vagueDensityPer500 + '</div></div>' +
+              '</div>' +
+              '<div style="display:flex;flex-direction:column;gap:8px;">' +
+              '<div style="display:flex;justify-content:space-between;font-size:12px;"><span style="font-weight:600;color:var(--text-200);">적발 TOP 5 가중 표현</span><span class="font-mono" style="font-size:11px;color:var(--text-400);">합계 ' + (b.emotionWeightedSum + b.vagueWeightedSum).toFixed(1) + '점</span></div>' +
+              (!hits.length
+                ? '<div style="padding:20px 0;text-align:center;font-size:12px;color:var(--text-500);">탐지된 가중 표현 없음</div>'
+                : hits.map(function (h) {
+                    var barCol = h.type === 'emotion' ? '#f43f5e' : '#fbbf24';
+                    var txtCol = h.type === 'emotion' ? 'var(--rose-300)' : 'var(--amber-300)';
+                    return (
+                      '<div style="display:flex;align-items:center;gap:10px;font-size:12px;">' +
+                      '<span style="width:110px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text-200);font-weight:500;">' + escapeHtml(h.text) + '</span>' +
+                      '<div style="flex:1;height:8px;background:#0f172a;border-radius:3px;overflow:hidden;"><div style="height:100%;width:' + Math.min(100, (h.weight / 3) * 100) + '%;background:' + barCol + ';"></div></div>' +
+                      '<span class="font-mono" style="width:36px;text-align:right;font-weight:700;color:' + txtCol + ';">+' + h.weight.toFixed(1) + '</span>' +
+                      '</div>'
+                    );
+                  }).join('')) +
+              '</div>' +
+              '</div>' +
+              '</div>';
+          } else {
+            var steps = [
+              { step: '01', title: '문장 분할', sum: '마침표 · 줄바꿈 기준', det: '2.3% 소수점 보존', col: 'var(--sky-400)' },
+              { step: '02', title: '모호함 분리', sum: '익명 · 추측 어미 선점', det: '복합명사 오탐 차단', col: 'var(--amber-400)' },
+              { step: '03', title: '감정어 확장', sum: '선동어 · !! · ?! 탐지', det: '어절 단위 확장 태깅', col: 'var(--rose-400)' },
+              { step: '04', title: '뉴스 팩트 추출', sum: '수치 · 기관 · 보도 동사', det: '광고 · 메타데이터 제외', col: 'var(--emerald-400)' },
+            ];
+            tabContent =
+              '<div class="panel-pad" style="display:flex;flex-direction:column;gap:16px;">' +
+              '<div class="sub-box" style="padding:16px;display:flex;flex-direction:column;gap:12px;">' +
+              '<div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-size:12px;">' +
+              '<div><span style="font-weight:600;color:var(--text-200);">문장별 판별 맵 (' + b.totalSentences + '문장)</span> <span style="font-size:11px;color:var(--sky-400);">· 클릭하면 원문 문장으로 이동</span></div>' +
+              '<span class="font-mono" style="color:var(--text-300);">오염 ' + b.contaminatedSentences + ' · 팩트 ' + b.factSentences + ' · 오염률 ' + b.contaminatedSentenceRatio + '%</span>' +
+              '</div>' +
+              '<div style="display:flex;flex-wrap:wrap;gap:6px;">' +
+              b.sentenceStatuses.map(function (st, idx) {
+                var cls = st === 'fact' ? 'sent-fact' : st === 'framing' ? 'sent-framing' : st === 'mixed' ? 'sent-mixed' : 'sent-neutral';
+                return '<button type="button" data-action="jump-sentence" data-sidx="' + idx + '" class="sent-tile ' + cls + (state.focusedSentenceIndex === idx ? ' is-focused' : '') + '">S' + (idx + 1) + '</button>';
+              }).join('') +
+              '</div>' +
+              '<div style="display:flex;flex-wrap:wrap;gap:16px;font-size:11px;color:var(--text-400);padding-top:4px;">' +
+              '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:2px;background:rgba(14,165,233,0.45);border:1px solid rgba(56,189,248,0.7);"></span>순수 팩트</span>' +
+              '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:2px;background:rgba(244,63,94,0.45);border:1px solid rgba(251,113,133,0.7);"></span>프레이밍 오염</span>' +
+              '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:2px;background:rgba(245,158,11,0.45);border:1px solid rgba(251,191,36,0.7);"></span>팩트+프레이밍 혼재</span>' +
+              '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:2px;background:#1e293b;border:1px solid #334155;"></span>일반 문맥</span>' +
+              '</div>' +
+              '</div>' +
+              '<div class="grid-4">' +
+              steps.map(function (st, idx) {
+                return (
+                  '<div class="sub-box" style="padding:14px;display:flex;align-items:center;justify-content:space-between;gap:8px;">' +
+                  '<div style="min-width:0;">' +
+                  '<div style="display:flex;align-items:center;gap:6px;"><span class="font-mono" style="font-size:12px;font-weight:700;color:' + st.col + ';">' + st.step + '</span><span style="font-size:12px;font-weight:700;color:var(--text-100);">' + st.title + '</span></div>' +
+                  '<div style="margin-top:4px;font-size:11px;color:var(--text-300);">' + st.sum + '</div>' +
+                  '<div style="margin-top:2px;font-size:11px;color:var(--text-500);">' + st.det + '</div>' +
+                  '</div>' +
+                  (idx < steps.length - 1 ? '<span style="color:var(--text-500);">' + ICONS.arrowRight + '</span>' : '') +
+                  '</div>'
+                );
+              }).join('') +
+              '</div>' +
+              '</div>';
+          }
+
+          return (
+            '<section class="panel" aria-labelledby="algo-panel-title">' +
+            '<div class="panel-header">' +
+            '<div style="display:flex;align-items:center;gap:10px;">' +
+            '<span style="color:var(--sky-400);display:inline-flex;">' + ICONS.barChart + '</span>' +
+            '<h2 id="algo-panel-title" class="panel-title">분석 알고리즘 시각화 패널</h2>' +
+            '<span class="font-mono" style="font-size:12px;color:var(--text-400);">· 어그로 지수 ' + b.aggroScore + '점 (' + metrics.gradeLabel + ')</span>' +
+            '</div>' +
+            '<div class="seg-tabs" role="tablist">' +
+            '<button type="button" data-action="set-algo-tab" data-tab="formula" class="seg-tab-btn ' + (state.algoTab === 'formula' ? 'is-active' : '') + '">' + ICONS.barChart + '<span>점수 게이지</span></button>' +
+            '<button type="button" data-action="set-algo-tab" data-tab="weights" class="seg-tab-btn ' + (state.algoTab === 'weights' ? 'is-active' : '') + '">' + ICONS.scale + '<span>단어 가중치</span></button>' +
+            '<button type="button" data-action="set-algo-tab" data-tab="structure" class="seg-tab-btn ' + (state.algoTab === 'structure' ? 'is-active' : '') + '">' + ICONS.layers + '<span>문장 구조 맵</span></button>' +
+            '</div>' +
+            '</div>' +
+            tabContent +
+            '</section>'
+          );
+        }
+
+        function renderDashboard() {
+          if (!state.analysis) {
+            return (
+              '<div class="panel" style="padding:48px 20px;text-align:center;">' +
+              '<p style="margin:0;font-size:14px;font-weight:500;color:var(--text-300);">분석할 텍스트가 없습니다.</p>' +
+              '<p style="margin:6px 0 0;font-size:12px;color:var(--text-500);">상단 입력창에서 샘플을 선택하거나 뉴스 링크 또는 본문을 입력한 뒤 X-레이 해부를 시작하세요.</p>' +
+              '</div>'
+            );
+          }
+
+          var derived = getDerivedState();
+          var metrics = derived.metrics;
+          var topFacts = derived.topFacts;
+          var sentenceGroups = derived.sentenceGroups;
+          var gradeCls = metrics.grade === 'aggro' ? 'grade-aggro' : metrics.grade === 'factual' ? 'grade-factual' : 'grade-caution';
+
+          var typeOptions = [
+            { value: 'fact', label: '순수 팩트', color: 'var(--sky-300)' },
+            { value: 'emotion', label: '감정 선동', color: 'var(--rose-300)' },
+            { value: 'vague', label: '모호한 출처', color: 'var(--amber-300)' },
+            { value: 'neutral', label: '일반 문맥', color: 'var(--text-300)' },
+          ];
+
+          var selectedSeg = null;
+          if (state.selectedAccordionSegId) {
+            for (var i = 0; i < state.analysis.segments.length; i++) {
+              if (state.analysis.segments[i].id === state.selectedAccordionSegId) {
+                selectedSeg = state.analysis.segments[i];
+                break;
+              }
+            }
+          }
+
+          return (
+            '<div style="display:flex;flex-direction:column;gap:16px;">' +
+            (state.analyzedMeta
+              ? '<div class="panel" style="padding:10px 16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;">' +
+                '<div style="display:flex;align-items:center;gap:8px;min-width:0;flex:1;"><span style="font-size:12px;font-weight:600;color:var(--sky-400);">추출 기사</span><p style="margin:0;font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + escapeHtml(state.analyzedMeta.title) + '</p></div>' +
+                '<a href="' + escapeHtml(state.analyzedMeta.url) + '" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="font-size:11px;padding:5px 10px;color:var(--sky-300);"><span>원본 링크 바로가기</span>' + ICONS.arrowUpRight + '</a>' +
+                '</div>'
+              : '') +
+
+            /* Scoreboard */
+            '<section class="grid-2" aria-label="3초 컷 임팩트 스코어보드">' +
+            '<div class="panel panel-pad" style="display:flex;align-items:center;gap:24px;">' +
+            renderDonutSvg(metrics) +
+            '<div style="min-width:0;flex:1;display:flex;flex-direction:column;gap:10px;">' +
+            '<div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;">' +
+            '<span class="grade-badge ' + gradeCls + '">' + metrics.gradeLabel + '</span>' +
+            '<span class="font-mono" style="font-size:12px;color:var(--text-300);">어그로 지수 ' + metrics.breakdown.aggroScore + '점 / 100</span>' +
+            '</div>' +
+            '<p style="margin:0;font-size:14px;color:var(--text-200);font-weight:500;" class="tabular-nums">원문 <strong class="font-mono" style="color:#fff;">' + metrics.totalChars + '</strong>자 중 순수 팩트 <strong class="font-mono" style="color:var(--sky-300);">' + metrics.factChars + '</strong>자</p>' +
+            '<div style="display:flex;flex-wrap:wrap;gap:10px;font-size:12px;" class="tabular-nums">' +
+            '<span style="color:var(--sky-300);">순수 팩트 ' + metrics.factPercent + '%</span><span style="color:var(--text-500);">·</span>' +
+            '<span style="color:var(--rose-300);">감정 선동 ' + metrics.emotionPercent + '%</span><span style="color:var(--text-500);">·</span>' +
+            '<span style="color:var(--amber-300);">모호 출처 ' + metrics.vaguePercent + '%</span>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+
+            '<div class="panel panel-pad" style="display:flex;flex-direction:column;justify-content:space-between;gap:12px;">' +
+            '<div style="display:flex;flex-direction:column;gap:8px;">' +
+            '<div style="display:flex;justify-content:space-between;font-size:12px;"><span style="font-weight:600;color:var(--rose-300);">감정 선동 키워드 TOP 3</span><span class="font-mono" style="color:var(--text-400);">' + metrics.emotionCount + '건 탐지</span></div>' +
+            '<div style="display:flex;flex-wrap:wrap;gap:8px;">' +
+            (state.analysis.emotionKeywords.length
+              ? state.analysis.emotionKeywords.map(function (kw) {
+                  return '<button type="button" data-action="focus-layer" data-layer="emotion" class="kw-chip-rose">#' + escapeHtml(kw) + '</button>';
+                }).join('')
+              : '<span style="font-size:12px;color:var(--text-500);">탐지된 감정 선동 키워드 없음</span>') +
+            '</div>' +
+            '</div>' +
+            '<div style="padding-top:10px;border-top:1px solid rgba(30,41,59,0.7);display:flex;flex-direction:column;gap:8px;">' +
+            '<div style="display:flex;justify-content:space-between;font-size:12px;"><span style="font-weight:600;color:var(--amber-300);">모호한 출처·책임 회피 표현</span><span class="font-mono" style="color:var(--text-400);">' + metrics.vagueCount + '건 탐지</span></div>' +
+            '<div style="display:flex;flex-wrap:wrap;gap:8px;">' +
+            (state.analysis.vagueKeywords.length
+              ? state.analysis.vagueKeywords.map(function (kw) {
+                  return '<button type="button" data-action="focus-layer" data-layer="vague" class="kw-chip-amber">#' + escapeHtml(kw) + '</button>';
+                }).join('')
+              : '<span style="font-size:12px;color:var(--text-500);">탐지된 모호한 출처 표현 없음</span>') +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</section>' +
+
+            /* Top 3 Facts + Insta Card News Button */
+            '<section class="panel panel-pad" aria-labelledby="top-facts-title" style="display:flex;flex-direction:column;gap:14px;">' +
+            '<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;">' +
+            '<div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;">' +
+            '<h2 id="top-facts-title" class="panel-title">탈수 완료: 핵심 팩트 TOP 3</h2>' +
+            '<span class="font-mono" style="font-size:12px;color:var(--sky-300);">· 뉴스 팩트 ' + metrics.factCount + '건 중 ' + topFacts.length + '건 엄선</span>' +
+            '</div>' +
+            '<div style="display:flex;align-items:center;gap:8px;">' +
+            '<button type="button" data-action="copy-summary" class="btn btn-secondary">' +
+            (state.copiedSummary ? '<span style="color:var(--emerald-400);display:inline-flex;">' + ICONS.check + '</span><span style="color:var(--emerald-300);">복사 완료</span>' : ICONS.copy + '<span>요약 복사</span>') +
+            '</button>' +
+            '<button type="button" data-action="open-insta" class="btn btn-sky-soft">' + ICONS.images + '<span>인스타 카드뉴스</span></button>' +
+            '</div>' +
+            '</div>' +
+            (!topFacts.length
+              ? '<div class="sub-box" style="padding:24px 16px;text-align:center;">' +
+                '<p style="margin:0;font-size:14px;color:var(--text-300);">뉴스 보도·공식 발표·통계와 관련된 핵심 팩트 문장이 검출되지 않았습니다.</p>' +
+                '<p style="margin:6px 0 0;font-size:12px;color:var(--text-500);">광고·메타데이터·일상 문구는 제외되며, 하단 원문 전체 X-레이에서 직접 태그를 교정할 수 있습니다.</p>' +
+                '</div>'
+              : '<div style="display:flex;flex-direction:column;gap:12px;">' +
+                topFacts.map(function (seg, idx) {
+                  var isEd = state.editingFactId === seg.id;
+                  var pplx = 'https://www.perplexity.ai/search?q=' + encodeURIComponent('다음 주장의 통계와 사실 여부를 객관적인 출처를 들어 검증해줘: ' + seg.text.trim());
+                  return (
+                    '<div class="fact-card">' +
+                    '<div style="display:flex;align-items:flex-start;gap:14px;min-width:0;flex:1;">' +
+                    '<span class="font-mono" style="font-size:14px;font-weight:700;color:var(--sky-400);padding-top:4px;flex-shrink:0;">0' + (idx + 1) + '</span>' +
+                    '<p class="fact-text">' + escapeHtml(seg.text) + '</p>' +
+                    '</div>' +
+                    '<div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;flex-shrink:0;">' +
+                    (isEd
+                      ? '<div style="display:flex;gap:4px;padding:4px;background:#0f172a;border:1px solid #334155;border-radius:6px;">' +
+                        typeOptions.map(function (opt) {
+                          return '<button type="button" data-action="reclassify-fact" data-segid="' + seg.id + '" data-type="' + opt.value + '" style="padding:4px 8px;border-radius:4px;font-size:11px;font-weight:600;color:' + (seg.type === opt.value ? '#fff;background:#1e293b;' : opt.color + ';') + '">' + opt.label + '</button>';
+                        }).join('') +
+                        '</div>'
+                      : '<button type="button" data-action="edit-fact" data-segid="' + seg.id + '" class="btn btn-secondary">' + ICONS.tag + '<span>태그 수정</span></button>') +
+                    '<a href="' + escapeHtml(pplx) + '" target="_blank" rel="noopener noreferrer" class="btn btn-sky-soft">Perplexity↗</a>' +
+                    '</div>' +
+                    '</div>'
+                  );
+                }).join('') +
+                '</div>') +
+            '</section>' +
+
+            /* Headline Battle & Blind Spots */
+            '<section class="grid-battle" aria-label="1줄 헤드라인 배틀 및 사각지대 진단">' +
+            '<div class="panel panel-pad" style="display:flex;flex-direction:column;gap:12px;">' +
+            '<div style="display:flex;justify-content:space-between;align-items:center;"><h3 class="panel-title">1줄 헤드라인 배틀</h3><span style="font-size:11px;color:var(--text-400);">동일 팩트 · 35자 이내 즉시 비교</span></div>' +
+            '<div style="display:flex;flex-direction:column;gap:8px;">' +
+            '<div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:6px;background:var(--bg-inset);border:1px solid rgba(244,63,94,0.3);"><span style="font-size:12px;font-weight:700;color:var(--rose-300);white-space:nowrap;">🔴 낚시성 기사</span><p style="margin:0;font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + escapeHtml(state.analysis.headlineBattle.sensational) + '</p></div>' +
+            '<div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:6px;background:var(--bg-inset);border:1px solid rgba(56,189,248,0.3);"><span style="font-size:12px;font-weight:700;color:var(--sky-300);white-space:nowrap;">🔵 건조한 팩트</span><p style="margin:0;font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + escapeHtml(state.analysis.headlineBattle.dryFact) + '</p></div>' +
+            '<div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:6px;background:var(--bg-inset);border:1px solid rgba(167,139,250,0.3);"><span style="font-size:12px;font-weight:700;color:var(--violet-300);white-space:nowrap;">🟣 반대 관점</span><p style="margin:0;font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + escapeHtml(state.analysis.headlineBattle.counterAngle) + '</p></div>' +
+            '</div>' +
+            '</div>' +
+
+            '<div class="panel panel-pad" style="display:flex;flex-direction:column;gap:12px;">' +
+            '<div style="display:flex;justify-content:space-between;align-items:center;"><h3 class="panel-title">사각지대 진단</h3><span class="font-mono" style="font-size:11px;color:var(--amber-300);">핵심 경고 ' + state.analysis.blindSpots.length + '건</span></div>' +
+            '<div style="display:flex;flex-direction:column;gap:10px;">' +
+            state.analysis.blindSpots.map(function (sp) {
+              return '<div style="padding:12px 14px;border-radius:6px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.35);font-size:13px;font-weight:500;color:var(--amber-100);line-height:1.45;">⚠️ ' + escapeHtml(sp.oneLineWarning) + '</div>';
+            }).join('') +
+            '</div>' +
+            '</div>' +
+            '</section>' +
+
+            /* Full X-Ray Accordion */
+            '<section class="panel" aria-label="원문 전체 X-레이 아코디언">' +
+            '<button type="button" data-action="toggle-accordion" aria-expanded="' + state.isAccordionOpen + '" style="width:100%;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;">' +
+            '<span style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--text-100);">' +
+            '<span style="color:var(--sky-400);display:inline-flex;">' + ICONS.search + '</span>' +
+            '<span>🔍 원문 전체 X-레이 ' + (state.isAccordionOpen ? '접기' : '펼치기') + ' (' + metrics.totalChars.toLocaleString() + '자)</span>' +
+            '</span>' +
+            '<span style="color:var(--text-400);display:inline-flex;">' + (state.isAccordionOpen ? ICONS.chevronUp : ICONS.chevronDown) + '</span>' +
+            '</button>' +
+            (state.isAccordionOpen
+              ? '<div style="border-top:1px solid var(--border);">' +
+                '<div style="padding:12px 20px;background:var(--bg-sub);border-bottom:1px solid var(--border);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;">' +
+                '<div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-size:12px;color:var(--text-400);">' +
+                '<span>구문을 클릭하면 태그 분류를 직접 수정할 수 있습니다</span>' +
+                (state.focusedSentenceIndex !== null
+                  ? '<button type="button" data-action="clear-sentence-focus" class="font-mono" style="padding:2px 8px;border-radius:4px;background:rgba(14,165,233,0.16);border:1px solid rgba(56,189,248,0.5);color:var(--sky-200);font-size:11px;">S' + (state.focusedSentenceIndex + 1) + ' 강조 중 · 해제</button>'
+                  : '') +
+                '</div>' +
+                '<button type="button" data-action="toggle-dehydrate" class="btn ' + (state.dehydrateMode ? 'btn-primary' : 'btn-secondary') + '">' + ICONS.droplets + '<span>어그로 탈수 모드 ' + (state.dehydrateMode ? 'ON' : 'OFF') + '</span></button>' +
+                '</div>' +
+                '<div class="xray-body">' +
+                sentenceGroups.map(function (grp) {
+                  var inner = grp.pieces.map(function (pc) {
+                    var seg = pc.segment;
+                    if (state.dehydrateMode && (seg.type === 'emotion' || seg.type === 'vague')) {
+                      return '<span class="seg-strike">' + escapeHtml(pc.text) + '</span>';
+                    }
+                    if (seg.type === 'neutral') {
+                      return '<button type="button" data-action="select-seg" data-segid="' + seg.id + '" class="seg-btn">' + escapeHtml(pc.text) + '</button>';
+                    }
+                    var cls = seg.type === 'emotion' ? 'seg-emotion' : seg.type === 'vague' ? 'seg-vague' : 'seg-fact';
+                    var dim = state.activeLayer !== 'all' && state.activeLayer !== seg.type ? ' seg-dim' : '';
+                    var sel = state.selectedAccordionSegId === seg.id ? ' seg-selected' : '';
+                    return '<button type="button" data-action="select-seg" data-segid="' + seg.id + '" class="seg-btn seg-highlight ' + cls + dim + sel + '">' + escapeHtml(pc.text) + '</button>';
+                  }).join('');
+                  if (grp.sentenceIndex === null) return '<span>' + inner + '</span>';
+                  var isFoc = state.focusedSentenceIndex === grp.sentenceIndex;
+                  return '<span id="xray-sent-' + grp.sentenceIndex + '" class="' + (isFoc ? 'sentence-focused' : '') + '">' + inner + '</span>';
+                }).join('') +
+                '</div>' +
+                (selectedSeg
+                  ? '<div style="padding:12px 20px;background:var(--bg-inset);border-top:1px solid var(--border);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;font-size:12px;">' +
+                    '<div style="min-width:0;flex:1;">' +
+                    '<div style="color:var(--text-300);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">선택 구문: “' + escapeHtml(selectedSeg.text.trim()) + '”</div>' +
+                    (selectedSeg.reason ? '<div style="font-size:11px;color:var(--text-400);margin-top:2px;">' + escapeHtml(selectedSeg.reason) + '</div>' : '') +
+                    '</div>' +
+                    '<div style="display:flex;gap:4px;">' +
+                    typeOptions.map(function (opt) {
+                      return '<button type="button" data-action="reclassify-seg" data-segid="' + selectedSeg.id + '" data-type="' + opt.value + '" class="btn btn-secondary" style="padding:4px 10px;font-size:11px;' + (selectedSeg.type === opt.value ? 'border-color:var(--sky-400);color:#fff;background:#1e293b;' : '') + '">' + opt.label + '</button>';
+                    }).join('') +
+                    '</div>' +
+                    '</div>'
+                  : '') +
+                '</div>'
+              : '') +
+            '</section>' +
+
+            renderAlgorithmPanel(metrics) +
+            '</div>'
+          );
+        }
+
+        function renderInstaModal(derived) {
+          if (!state.isInstaModalOpen || !derived.metrics) return '';
+          var slides = buildInstaCardSlides({
+            articleMeta: state.analyzedMeta,
+            metrics: derived.metrics,
+            topFacts: derived.topFacts,
+            blindSpots: state.analysis.blindSpots,
+            headlineBattle: state.analysis.headlineBattle,
+            customCoverTitle: state.instaCoverTitle,
+          });
+          var safeIdx = Math.min(state.instaSlideIdx, Math.max(0, slides.length - 1));
+          var themeList = [
+            { id: 'editorial-light', label: '크림 에디토리얼', sw: '#F6F4EE', bd: '#D6D3C9' },
+            { id: 'dark-magazine', label: '다크 매거진', sw: '#0B1120', bd: '#38bdf8' },
+            { id: 'bold-contrast', label: '임팩트 블랙', sw: '#09090B', bd: '#facc15' },
+          ];
+          return (
+            '<div class="modal-backdrop" data-action="close-insta-backdrop" role="dialog" aria-modal="true" aria-labelledby="insta-modal-title">' +
+            '<div class="modal-card" data-stop-prop="1">' +
+            '<div class="panel-header">' +
+            '<div style="display:flex;align-items:center;gap:10px;">' +
+            '<span style="color:var(--sky-400);display:inline-flex;">' + ICONS.images + '</span>' +
+            '<h2 id="insta-modal-title" class="panel-title">인스타 카드뉴스 스튜디오</h2>' +
+            '<span class="font-mono" style="font-size:12px;color:var(--text-400);">· 1080×1350 (4:5) · ' + slides.length + '장 세트</span>' +
+            '</div>' +
+            '<button type="button" data-action="close-insta" aria-label="카드뉴스 창 닫기" style="padding:6px;color:var(--text-400);">' + ICONS.x + '</button>' +
+            '</div>' +
+            '<div class="modal-body">' +
+            '<div style="display:flex;flex-direction:column;align-items:center;gap:12px;">' +
+            '<div class="canvas-stage">' +
+            '<canvas id="insta-preview-canvas" style="width:100%;height:100%;display:block;"></canvas>' +
+            '<button type="button" data-action="insta-prev" class="carousel-arrow" style="left:8px;" ' + (safeIdx === 0 ? 'disabled' : '') + ' aria-label="이전 카드">' + ICONS.chevronLeft + '</button>' +
+            '<button type="button" data-action="insta-next" class="carousel-arrow" style="right:8px;" ' + (safeIdx === slides.length - 1 ? 'disabled' : '') + ' aria-label="다음 카드">' + ICONS.chevronRight + '</button>' +
+            '</div>' +
+            '<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:6px;">' +
+            slides.map(function (s, idx) {
+              var lbl = s.kind === 'cover' ? '1. 표지' : s.kind === 'fact' ? s.slideNumber + '. 팩트 0' + s.factOrder : s.slideNumber + '. 결론';
+              return '<button type="button" data-action="insta-slide" data-idx="' + idx + '" class="font-mono" style="padding:4px 10px;border-radius:4px;font-size:11px;font-weight:600;' + (safeIdx === idx ? 'background:var(--sky-500);color:#020617;' : 'background:#0f172a;border:1px solid var(--border);color:var(--text-400);') + '">' + lbl + '</button>';
+            }).join('') +
+            '</div>' +
+            '</div>' +
+            '<div style="display:flex;flex-direction:column;gap:18px;">' +
+            '<div style="display:flex;flex-direction:column;gap:8px;">' +
+            '<div style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--text-200);">' + ICONS.palette + '<span>카드뉴스 디자인 테마</span></div>' +
+            themeList.map(function (t) {
+              var sel = state.instaThemeId === t.id;
+              return (
+                '<button type="button" data-action="insta-theme" data-theme="' + t.id + '" style="width:100%;padding:8px 12px;border-radius:6px;border:1px solid ' + (sel ? 'var(--sky-400)' : 'var(--border)') + ';background:' + (sel ? '#1e293b' : 'var(--bg-inset)') + ';color:' + (sel ? '#fff' : 'var(--text-300)') + ';font-size:12px;font-weight:500;display:flex;align-items:center;justify-content:space-between;">' +
+                '<span style="display:flex;align-items:center;gap:8px;"><span style="width:14px;height:14px;border-radius:3px;background:' + t.sw + ';border:1px solid ' + t.bd + ';"></span><span>' + t.label + '</span></span>' +
+                (sel ? '<span class="font-mono" style="font-size:10px;color:var(--sky-400);">선택됨</span>' : '') +
+                '</button>'
+              );
+            }).join('') +
+            '</div>' +
+            '<div style="display:flex;flex-direction:column;gap:6px;">' +
+            '<label for="insta-cover-input" style="font-size:12px;font-weight:600;color:var(--text-200);">표지 헤드라인 (1번 카드)</label>' +
+            '<input id="insta-cover-input" type="text" class="text-input" value="' + escapeHtml(state.instaCoverTitle) + '" placeholder="인스타 표지 제목 입력..." />' +
+            '</div>' +
+            '<div style="padding-top:12px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:8px;">' +
+            '<button type="button" data-action="insta-save-one" class="btn btn-secondary" style="width:100%;padding:10px 14px;">' + ICONS.download + '<span>현재 ' + (safeIdx + 1) + '번 카드만 저장</span></button>' +
+            '<button type="button" data-action="insta-save-all" class="btn btn-primary" style="width:100%;padding:10px 14px;" ' + (state.isExportingAll ? 'disabled' : '') + '>' + ICONS.images + '<span>' + (state.isExportingAll ? '카드 저장 중...' : '전체 ' + slides.length + '장 세트 저장 (PNG)') + '</span></button>' +
+            '<p style="margin:0;font-size:11px;color:var(--text-400);text-align:center;">' + CARD_THEMES[state.instaThemeId].label + ' · 1080×1350px 고화질</p>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>'
+          );
+        }
+
+        function renderInstaCanvasIfOpen() {
+          if (!state.isInstaModalOpen || !state.analysis) return;
+          var canvas = document.getElementById('insta-preview-canvas');
+          if (!canvas) return;
+          var derived = getDerivedState();
+          var slides = buildInstaCardSlides({
+            articleMeta: state.analyzedMeta,
+            metrics: derived.metrics,
+            topFacts: derived.topFacts,
+            blindSpots: state.analysis.blindSpots,
+            headlineBattle: state.analysis.headlineBattle,
+            customCoverTitle: state.instaCoverTitle,
+          });
+          var safeIdx = Math.min(state.instaSlideIdx, Math.max(0, slides.length - 1));
+          if (slides[safeIdx]) {
+            renderInstaCardSlide(canvas, slides[safeIdx], slides.length, state.instaThemeId);
+          }
+        }
+
+        function renderApp() {
+          var root = document.getElementById('app');
+          if (!root) return;
+          var derived = getDerivedState();
+          root.innerHTML =
+            renderTopBar() +
+            '<main id="top" class="main-container">' +
+            renderInputPanel() +
+            renderDashboard() +
+            '</main>' +
+            renderInstaModal(derived);
+
+          bindDynamicInputs();
+          renderInstaCanvasIfOpen();
+        }
+
+        function runUrlExtraction(targetUrl) {
+          var trimmed = String(targetUrl || '').trim();
+          if (!trimmed || state.isExtracting) return;
+          state.extractError = null;
+          state.isExtracting = true;
+          state.urlInput = trimmed;
+          renderApp();
+
+          extractNewsFromUrl(trimmed)
+            .then(function (res) {
+              var safeUrl = sanitizePublicHttpUrl(res.url);
+              var meta = safeUrl ? { title: res.title, url: safeUrl } : null;
+              state.rawText = res.content;
+              state.activeSampleId = null;
+              state.extractedMeta = meta;
+              state.analyzedMeta = meta;
+              state.analysis = analyzeKoreanFraming(res.content);
+              state.focusedSentenceIndex = null;
+              state.selectedAccordionSegId = null;
+              state.isExtracting = false;
+              renderApp();
+            })
+            .catch(function (err) {
+              state.extractError = (err && err.message) || '본문 추출에 실패했습니다.';
+              state.isExtracting = false;
+              renderApp();
+            });
+        }
+
+        function bindDynamicInputs() {
+          var urlForm = document.getElementById('url-extract-form');
+          if (urlForm) {
+            urlForm.addEventListener('submit', function (e) {
+              e.preventDefault();
+              runUrlExtraction(state.urlInput);
+            });
+          }
+
+          var urlInputEl = document.getElementById('news-url-input');
+          if (urlInputEl) {
+            urlInputEl.addEventListener('input', function (e) {
+              state.urlInput = e.target.value;
+              if (state.extractError) state.extractError = null;
+              var submitBtn = urlForm ? urlForm.querySelector('button[type="submit"]') : null;
+              if (submitBtn) submitBtn.disabled = state.isExtracting || !state.urlInput.trim();
+            });
+          }
+
+          var rawInputEl = document.getElementById('raw-article-input');
+          if (rawInputEl) {
+            rawInputEl.addEventListener('input', function (e) {
+              var prevHasUrl = !!isLikelyStandaloneUrl(state.rawText);
+              state.rawText = e.target.value;
+              var matched = findMatchingSample(state.rawText);
+              state.activeSampleId = matched ? matched.id : null;
+              if (matched || !state.rawText.trim()) state.extractedMeta = null;
+              var nextHasUrl = !!isLikelyStandaloneUrl(state.rawText);
+              if (prevHasUrl !== nextHasUrl || !state.rawText.trim()) {
+                var pos = e.target.selectionStart;
+                renderApp();
+                var reEl = document.getElementById('raw-article-input');
+                if (reEl) { reEl.focus(); reEl.setSelectionRange(pos, pos); }
+              } else {
+                var analyzeBtn = document.querySelector('[data-action="analyze"]');
+                if (analyzeBtn) analyzeBtn.disabled = state.isExtracting || !state.rawText.trim();
+              }
+            });
+          }
+
+          var coverInput = document.getElementById('insta-cover-input');
+          if (coverInput) {
+            coverInput.addEventListener('input', function (e) {
+              state.instaCoverTitle = e.target.value;
+              state.instaSlideIdx = 0;
+              renderInstaCanvasIfOpen();
+            });
+          }
+        }
+
+        /* ---------------- Delegated Click & Keyboard Handlers ---------------- */
+        document.addEventListener('click', function (e) {
+          var actionEl = e.target.closest ? e.target.closest('[data-action]') : null;
+          if (!actionEl) return;
+          var action = actionEl.getAttribute('data-action');
+
+          if (action === 'close-insta-backdrop' && e.target !== actionEl) return;
+
+          if (action === 'download-html') {
+            downloadStandaloneHtml();
+          } else if (action === 'brand-reset') {
+            e.preventDefault();
+            state.activeLayer = 'all';
+            renderApp();
+          } else if (action === 'set-layer') {
+            state.activeLayer = actionEl.getAttribute('data-layer') || 'all';
+            renderApp();
+          } else if (action === 'reset-sample') {
+            state.rawText = SAMPLE_CASES[0].text;
+            state.urlInput = '';
+            state.activeSampleId = SAMPLE_CASES[0].id;
+            state.extractedMeta = null;
+            state.analyzedMeta = null;
+            state.extractError = null;
+            state.isInputCollapsed = false;
+            state.activeLayer = 'all';
+            state.focusedSentenceIndex = null;
+            state.selectedAccordionSegId = null;
+            state.analysis = analyzeKoreanFraming(SAMPLE_CASES[0].text);
+            renderApp();
+          } else if (action === 'select-sample') {
+            var sid = actionEl.getAttribute('data-sample');
+            for (var i = 0; i < SAMPLE_CASES.length; i++) {
+              if (SAMPLE_CASES[i].id === sid) {
+                state.rawText = SAMPLE_CASES[i].text;
+                state.urlInput = '';
+                state.activeSampleId = sid;
+                state.extractedMeta = null;
+                state.analyzedMeta = null;
+                state.extractError = null;
+                state.focusedSentenceIndex = null;
+                state.selectedAccordionSegId = null;
+                state.analysis = analyzeKoreanFraming(SAMPLE_CASES[i].text);
+                renderApp();
+                break;
+              }
+            }
+          } else if (action === 'expand-input') {
+            state.isInputCollapsed = false;
+            renderApp();
+          } else if (action === 'clear-text') {
+            state.rawText = '';
+            state.urlInput = '';
+            state.activeSampleId = null;
+            state.extractedMeta = null;
+            state.analyzedMeta = null;
+            state.extractError = null;
+            state.analysis = null;
+            renderApp();
+          } else if (action === 'extract-detected-url') {
+            runUrlExtraction(actionEl.getAttribute('data-url'));
+          } else if (action === 'analyze') {
+            if (!state.rawText.trim()) return;
+            state.analyzedMeta = state.extractedMeta;
+            state.analysis = analyzeKoreanFraming(state.rawText);
+            state.focusedSentenceIndex = null;
+            state.selectedAccordionSegId = null;
+            state.isInputCollapsed = true;
+            renderApp();
+          } else if (action === 'focus-layer') {
+            state.activeLayer = actionEl.getAttribute('data-layer') || 'all';
+            state.isAccordionOpen = true;
+            renderApp();
+          } else if (action === 'edit-fact') {
+            state.editingFactId = actionEl.getAttribute('data-segid');
+            renderApp();
+          } else if (action === 'reclassify-fact') {
+            var fId = actionEl.getAttribute('data-segid');
+            var fType = actionEl.getAttribute('data-type');
+            if (state.analysis && fId && fType) {
+              state.analysis = reclassifySegment(state.analysis, fId, fType);
+            }
+            state.editingFactId = null;
+            renderApp();
+          } else if (action === 'copy-summary') {
+            var d = getDerivedState();
+            if (!d.metrics) return;
+            var lines = ['[Framing X-Ray] 탈수 완료 · 핵심 팩트 TOP 3'];
+            if (state.analyzedMeta && state.analyzedMeta.title) lines.push('기사: ' + state.analyzedMeta.title);
+            lines.push('판정: ' + d.metrics.gradeLabel + ' | 어그로 지수 ' + d.metrics.breakdown.aggroScore + '/100점');
+            lines.push('구성: 순수 팩트 ' + d.metrics.factPercent + '% · 감정 선동 ' + d.metrics.emotionPercent + '% · 모호 출처 ' + d.metrics.vaguePercent + '%');
+            lines.push('');
+            if (!d.topFacts.length) lines.push('검출된 뉴스 핵심 팩트가 없습니다.');
+            else d.topFacts.forEach(function (ft, idx) { lines.push('0' + (idx + 1) + '. ' + ft.text.trim()); });
+            if (state.analysis.blindSpots[0]) {
+              lines.push('');
+              lines.push('사각지대 경고: ' + state.analysis.blindSpots[0].oneLineWarning);
+            }
+            if (state.analyzedMeta && state.analyzedMeta.url) lines.push('원문: ' + state.analyzedMeta.url);
+            copyTextToClipboard(lines.join('\n')).then(function (ok) {
+              if (ok) {
+                state.copiedSummary = true;
+                renderApp();
+                window.setTimeout(function () { state.copiedSummary = false; renderApp(); }, 2000);
+              }
+            });
+          } else if (action === 'open-insta') {
+            state.instaCoverTitle =
+              (state.analyzedMeta && state.analyzedMeta.title) ||
+              (state.analysis && state.analysis.headlineBattle.dryFact) ||
+              '감정과 과장을 덜어낸 오늘의 팩트';
+            state.instaSlideIdx = 0;
+            state.isInstaModalOpen = true;
+            renderApp();
+          } else if (action === 'close-insta' || action === 'close-insta-backdrop') {
+            state.isInstaModalOpen = false;
+            renderApp();
+          } else if (action === 'insta-prev') {
+            state.instaSlideIdx = Math.max(0, state.instaSlideIdx - 1);
+            renderApp();
+          } else if (action === 'insta-next') {
+            state.instaSlideIdx += 1;
+            renderApp();
+          } else if (action === 'insta-slide') {
+            state.instaSlideIdx = parseInt(actionEl.getAttribute('data-idx') || '0', 10);
+            renderApp();
+          } else if (action === 'insta-theme') {
+            state.instaThemeId = actionEl.getAttribute('data-theme') || 'editorial-light';
+            renderApp();
+          } else if (action === 'insta-save-one') {
+            var cv = document.getElementById('insta-preview-canvas');
+            if (cv) triggerPngDownload(cv, 'framing-xray-card-' + (state.instaSlideIdx + 1) + '.png');
+          } else if (action === 'insta-save-all') {
+            if (state.isExportingAll || !state.analysis) return;
+            state.isExportingAll = true;
+            renderApp();
+            var dAll = getDerivedState();
+            var allSlides = buildInstaCardSlides({
+              articleMeta: state.analyzedMeta,
+              metrics: dAll.metrics,
+              topFacts: dAll.topFacts,
+              blindSpots: state.analysis.blindSpots,
+              headlineBattle: state.analysis.headlineBattle,
+              customCoverTitle: state.instaCoverTitle,
+            });
+            var off = document.createElement('canvas');
+            allSlides.forEach(function (sl, idx) {
+              window.setTimeout(function () {
+                renderInstaCardSlide(off, sl, allSlides.length, state.instaThemeId);
+                triggerPngDownload(off, 'framing-xray-card-' + (idx + 1) + '.png');
+                if (idx === allSlides.length - 1) {
+                  state.isExportingAll = false;
+                  renderApp();
+                }
+              }, idx * 240);
+            });
+          } else if (action === 'toggle-accordion') {
+            state.isAccordionOpen = !state.isAccordionOpen;
+            renderApp();
+          } else if (action === 'toggle-dehydrate') {
+            state.dehydrateMode = !state.dehydrateMode;
+            renderApp();
+          } else if (action === 'clear-sentence-focus') {
+            state.focusedSentenceIndex = null;
+            renderApp();
+          } else if (action === 'select-seg') {
+            state.selectedAccordionSegId = actionEl.getAttribute('data-segid');
+            renderApp();
+          } else if (action === 'reclassify-seg') {
+            var sId = actionEl.getAttribute('data-segid');
+            var sType = actionEl.getAttribute('data-type');
+            if (state.analysis && sId && sType) {
+              state.analysis = reclassifySegment(state.analysis, sId, sType);
+            }
+            renderApp();
+          } else if (action === 'set-algo-tab') {
+            state.algoTab = actionEl.getAttribute('data-tab') || 'formula';
+            renderApp();
+          } else if (action === 'jump-sentence') {
+            var sIdx = parseInt(actionEl.getAttribute('data-sidx') || '0', 10);
+            state.activeLayer = 'all';
+            state.isAccordionOpen = true;
+            state.focusedSentenceIndex = sIdx;
+            renderApp();
+            window.setTimeout(function () {
+              var el = document.getElementById('xray-sent-' + sIdx);
+              if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 60);
+          }
+        });
+
+        document.addEventListener('keydown', function (e) {
+          if (!state.isInstaModalOpen) return;
+          if (e.key === 'Escape') {
+            state.isInstaModalOpen = false;
+            renderApp();
+          }
+        });
+
+        renderApp();
+      })();
+    </script></body></html>
